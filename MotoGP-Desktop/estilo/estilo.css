@@ -15,25 +15,37 @@ header {
 }
 
 h1 a:visited{
-  color: #da2923;   /* Soft Peach */
-  text-decoration: none; /* Sin subrayado */
-  
+  text-decoration: none;
+  color:#da2923;
 }
 
 /* Especificidad: (0,0,1) */
 nav {
   background-color: #7c7c7c; 
-  color: #f0e6e4; 
+  margin: 3px;
+  margin-right: auto;
   padding: 0.5rem;
 }
 
 /* Especificidad: (0,0,2) */
 nav a {
   color: #f0e6e4;
-  text-decoration: none;
+  padding:0.12em ;
 }
 
-/* Especificidad: (0,1,2) */
-nav a:hover {
-  color: #da2923;
+a:focus,a:hover{
+  color:orange;
+  text-transform: capitalize;
+}
+
+a.active{
+  color:#da2923;
+  border-color:#f0e6e4;
+  font-style: italic;
+}
+
+
+p > strong{
+  color:#da2923;
+  font-style: italic;
 }
