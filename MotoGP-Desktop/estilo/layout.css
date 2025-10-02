@@ -1,0 +1,58 @@
+/* Alejandro Requena Roncero UO301831   */
+
+/* Layout del proyecto MotoGP-Desktop*/
+
+/* Header: contiene el título y la barra de navegación */
+header {
+  display: flex;                 /* Activar Flexbox */
+  flex-wrap: wrap;                /* Permite que se adapte en pantallas pequeñas */
+  gap: 1rem;                      /* Separación entre h1 y nav */
+}
+
+header h1 {
+  flex: 1 1 auto;   /* Puede crecer y encogerse, ocupa espacio flexible */
+  margin: 0;        /* Quitar márgenes innecesarios */
+}
+
+/** Version para moviles*/
+
+@media (min-width: 320px) and (max-width: 799px){
+  
+  
+  header h1{
+    flex-direction: column;   /* Apila h1 y nav en columna */
+    align-items: flex-start;  /* Alinear a la izquierda */
+  }
+
+
+  header nav{
+    flex-direction: column;   /* Enlaces uno debajo de otro */
+    width: 100%;              /* Ocupar ancho completo */
+    gap: 0.5rem;
+
+  }
+
+  nav a {
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  #migas{
+    display: none
+  }
+}
+
+
+
+
+nav {
+  display: flex;
+  flex-wrap: wrap;              /* Si no caben los enlaces, se van a otra línea */
+  gap: 0.5rem 1rem;             /* Espaciado horizontal y vertical entre enlaces */
+}
+
+nav a {
+  text-decoration: none;
+  padding: 0.2rem 1.6rem;
+  flex: 0 0 auto;   /* Los enlaces mantienen su tamaño natural */
+}

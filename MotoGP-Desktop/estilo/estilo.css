@@ -32,20 +32,36 @@ nav a {
   color: #f0e6e4;
   padding:0.12em ;
 }
-
-a:focus,a:hover{
+/**Pasar por encima de un enlace*/
+a:hover{
   color:orange;
-  text-transform: capitalize;
+  font-size: 105%;
 }
 
+/**Pagina seleccionada*/
 a.active{
   color:#da2923;
-  border-color:#f0e6e4;
+  border-color:#050505;
   font-style: italic;
 }
 
 
-p > strong{
+#migas {
+  font-size: 110%;
+}
+
+
+#migas >  p > strong{
   color:#da2923;
   font-style: italic;
+  font-size: 120%;
+}
+
+header > h1 > a{
+  text-decoration-line: none;
+}
+
+video ,audio{
+  width: 100%;
+  height:auto;
 }
