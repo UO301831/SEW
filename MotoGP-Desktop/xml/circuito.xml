@@ -1,0 +1,53 @@
+<!-- Información sobre el circuito Red Bull Ring - Spielberg -->
+
+
+<!-- Coordenadas: 47°13'12"N 14°45'54"E  -->
+
+<!-- 
+Enlaces de bibliografia:https://www.motorbikemag.es/horario-motogp-gp-austria-red-bull-ring-fecha-hora-carreras/
+https://www.motogp.com/es/calendar/2025/event/austria/2691a49e-a593-4119-8fe4-826017d5f2dd?tab=overview
+
+-->
+
+<circuito>
+    <nombre name="Red Bull Ring - Spielberg"/>
+    <longitud longitud="4,3" medida="km"/>
+    <anchura media = "12" medida = "m"/>
+    <fecha carrera = "Domingo 17 agosto de 2025"/>
+    <hora es="14:00h"/>
+    <vueltas numero="28"/>
+    <localidad proxima="Zeltweg"/>
+    <pais pais="Austria"/>
+    <patrocinador nombre="Bwin"/>
+    
+    <bibliografía>
+        <referencia nombre ="The Official Home of MotoGP"  enlace= "https://www.motogp.com/es/calendar/2025/event/austria/2691a49e-a593-4119-8fe4-826017d5f2dd?tab=overview"/>
+        <referencia nombre = "Motorbike Magazine" enlace= "https://www.motorbikemag.es/horario-motogp-gp-austria-red-bull-ring-fecha-hora-carreras/"/>
+        <referencia nombre = "DAZN" enlace = "https://www.dazn.com/es-ES/news/motor/circuito-red-bull-ring-donde-esta-como-es-caracteristicas-como-llegar-fotos-escenario-gp-austria-mundial-f1-motogp/11mzmm2gb230a1fcbe6anph2tc"/>    
+    </bibliografía>
+
+    <fotografía>
+        <referencia nombre = "recta" src= "multimedia/recta.jpg"/>
+        <referencia nombre = "curva" src= "multimedia/curva.jpg"/>
+    </fotografía>
+
+    <multimedia>
+        <video nombre="Circuito" src="multimedia/circuito.mp4"></video>
+    </multimedia>
+
+    <origen nombre="Punto de origen de la pista" longitud="14°45'54E" latitud="47°13'12N" altitud="677 metros"/>
+    
+    <puntos>
+        
+    </puntos>
+
+
+    <vencedor nombre="Marc Márquez" tiempo="42:11.006" />
+
+    <clasificacion>
+        <piloto puesto="1º" nombre = "Márc Marquez" puntos = "545 puntos"/>
+        <piloto puesto="2º" nombre = "Álex Márquez" puntos = "362 puntos"/>
+        <piloto puesto="3º" nombre = "Francesco Bagnaia" puntos = "274 puntos"/>
+    </clasificacion>
+
+</circuito>
