@@ -1,53 +1,60 @@
-<!-- Información sobre el circuito Red Bull Ring - Spielberg -->
-
-
-<!-- Coordenadas: 47°13'12"N 14°45'54"E  -->
-
-<!-- 
-Enlaces de bibliografia:https://www.motorbikemag.es/horario-motogp-gp-austria-red-bull-ring-fecha-hora-carreras/
-https://www.motogp.com/es/calendar/2025/event/austria/2691a49e-a593-4119-8fe4-826017d5f2dd?tab=overview
-
--->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE circuito SYSTEM "circuito.dtd">
 
 <circuito>
-    <nombre name="Red Bull Ring - Spielberg"/>
-    <longitud longitud="4,3" medida="km"/>
-    <anchura media = "12" medida = "m"/>
-    <fecha carrera = "Domingo 17 agosto de 2025"/>
-    <hora es="14:00h"/>
-    <vueltas numero="28"/>
-    <localidad proxima="Zeltweg"/>
-    <pais pais="Austria"/>
-    <patrocinador nombre="Bwin"/>
-    
-    <bibliografía>
-        <referencia nombre ="The Official Home of MotoGP"  enlace= "https://www.motogp.com/es/calendar/2025/event/austria/2691a49e-a593-4119-8fe4-826017d5f2dd?tab=overview"/>
-        <referencia nombre = "Motorbike Magazine" enlace= "https://www.motorbikemag.es/horario-motogp-gp-austria-red-bull-ring-fecha-hora-carreras/"/>
-        <referencia nombre = "DAZN" enlace = "https://www.dazn.com/es-ES/news/motor/circuito-red-bull-ring-donde-esta-como-es-caracteristicas-como-llegar-fotos-escenario-gp-austria-mundial-f1-motogp/11mzmm2gb230a1fcbe6anph2tc"/>    
-    </bibliografía>
+  <nombre>Red Bull Ring - Spielberg</nombre>
+  <longitud medida="m">4300</longitud>
+  <anchura medida="m">12</anchura>
+  <fecha fechaISO="2025-08-17">Domingo 17 de agosto de 2025</fecha>
+  <hora>14:00h</hora>
+  <vueltas>28</vueltas>
+  <localidad_proxima>Zeltweg</localidad_proxima>
+  <pais>Austria</pais>
+  <patrocinador_principal>Bwin</patrocinador_principal>
 
-    <fotografía>
-        <referencia nombre = "recta" src= "multimedia/recta.jpg"/>
-        <referencia nombre = "curva" src= "multimedia/curva.jpg"/>
-    </fotografía>
+  <bibliografia>
+    <referencia nombre="The Official Home of MotoGP" enlace="https://www.motogp.com/es/calendar/2025/event/austria/2691a49e-a593-4119-8fe4-826017d5f2dd?tab=overview"/>
+    <referencia nombre="Motorbike Magazine" enlace="https://www.motorbikemag.es/horario-motogp-gp-austria-red-bull-ring-fecha-hora-carreras/"/>
+    <referencia nombre="DAZN" enlace="https://www.dazn.com/es-ES/news/motor/circuito-red-bull-ring-donde-esta-como-es-caracteristicas-como-llegar-fotos-escenario-gp-austria-mundial-f1-motogp/11mzmm2gb230a1fcbe6anph2tc"/>
+  </bibliografia>
 
-    <multimedia>
-        <video nombre="Circuito" src="multimedia/circuito.mp4"></video>
-    </multimedia>
+  <fotografia>
+    <imagen nombre="recta" src="multimedia/recta.jpg"/>
+    <imagen nombre="curva" src="multimedia/curva.jpg"/>
+  </fotografia>
 
-    <origen nombre="Punto de origen de la pista" longitud="14°45'54E" latitud="47°13'12N" altitud="677 metros"/>
-    
-    <puntos>
-        
-    </puntos>
+  <multimedia>
+    <video nombre="Circuito" src="multimedia/circuito.mp4"/>
+  </multimedia>
 
+  <origen nombre="Punto de origen de la pista" longitud="14°45'54E" latitud="47°13'12N" altitud="677 m"/>
 
-    <vencedor nombre="Marc Márquez" tiempo="42:11.006" />
+  <puntos>
+    <tramo distancia="800" unidad="m" sector="1">
+      <fin longitud="14°45'58E" latitud="47°13'15N" altitud="678 m"/>
+    </tramo>
+    <tramo distancia="700" unidad="m" sector="2">
+      <fin longitud="14°45'56E" latitud="47°13'20N" altitud="679 m"/>
+    </tramo>
+    <tramo distancia="600" unidad="m" sector="3">
+      <fin longitud="14°45'51E" latitud="47°13'18N" altitud="676 m"/>
+    </tramo>
+    <tramo distancia="700" unidad="m" sector="4">
+      <fin longitud="14°45'48E" latitud="47°13'14N" altitud="675 m"/>
+    </tramo>
+    <tramo distancia="600" unidad="m" sector="5">
+      <fin longitud="14°45'50E" latitud="47°13'10N" altitud="676 m"/>
+    </tramo>
+    <tramo distancia="900" unidad="m" sector="6">
+      <fin longitud="14°45'54E" latitud="47°13'12N" altitud="677 m"/>
+    </tramo>
+  </puntos>
 
-    <clasificacion>
-        <piloto puesto="1º" nombre = "Márc Marquez" puntos = "545 puntos"/>
-        <piloto puesto="2º" nombre = "Álex Márquez" puntos = "362 puntos"/>
-        <piloto puesto="3º" nombre = "Francesco Bagnaia" puntos = "274 puntos"/>
-    </clasificacion>
+  <vencedor nombre="Marc Márquez" tiempo="42:11.006"/>
 
+  <clasificacion>
+    <piloto puesto="1" nombre="Marc Márquez" puntos="545"/>
+    <piloto puesto="2" nombre="Álex Márquez" puntos="362"/>
+    <piloto puesto="3" nombre="Francesco Bagnaia" puntos="274"/>
+  </clasificacion>
 </circuito>

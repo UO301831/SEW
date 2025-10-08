@@ -1,0 +1,95 @@
+<!-- circuito.dtd - Definición de la estructura del documento circuito.xml -->
+
+<!ELEMENT circuito (
+    nombre,
+    longitud,
+    anchura,
+    fecha,
+    hora,
+    vueltas,
+    localidad_proxima,
+    pais,
+    patrocinador_principal,
+    bibliografia,
+    fotografia,
+    multimedia,
+    origen,
+    puntos,
+    vencedor,
+    clasificacion
+)>
+
+<!ELEMENT nombre (#PCDATA)>
+
+<!ELEMENT longitud (#PCDATA)>
+<!ATTLIST longitud medida CDATA #REQUIRED>
+
+<!ELEMENT anchura (#PCDATA)>
+<!ATTLIST anchura medida CDATA #REQUIRED>
+
+<!ELEMENT fecha (#PCDATA)>
+<!ATTLIST fecha fechaISO CDATA #REQUIRED>
+
+<!ELEMENT hora (#PCDATA)>
+<!ELEMENT vueltas (#PCDATA)>
+<!ELEMENT localidad_proxima (#PCDATA)>
+<!ELEMENT pais (#PCDATA)>
+<!ELEMENT patrocinador_principal (#PCDATA)>
+
+<!ELEMENT bibliografia (referencia+)>
+<!ELEMENT referencia EMPTY>
+<!ATTLIST referencia
+    nombre CDATA #REQUIRED
+    enlace CDATA #REQUIRED
+>
+
+<!ELEMENT fotografia (imagen+)>
+<!ELEMENT imagen EMPTY>
+<!ATTLIST imagen
+    nombre CDATA #REQUIRED
+    src CDATA #REQUIRED
+>
+
+<!ELEMENT multimedia (video+)>
+<!ELEMENT video EMPTY>
+<!ATTLIST video
+    nombre CDATA #REQUIRED
+    src CDATA #REQUIRED
+>
+
+<!ELEMENT origen EMPTY>
+<!ATTLIST origen
+    nombre CDATA #IMPLIED
+    longitud CDATA #REQUIRED
+    latitud CDATA #REQUIRED
+    altitud CDATA #REQUIRED
+>
+
+<!ELEMENT puntos (tramo+)>
+<!ELEMENT tramo (fin)>
+<!ATTLIST tramo
+    distancia CDATA #REQUIRED
+    unidad CDATA #IMPLIED
+    sector CDATA #REQUIRED
+>
+
+<!ELEMENT fin EMPTY>
+<!ATTLIST fin
+    longitud CDATA #REQUIRED
+    latitud CDATA #REQUIRED
+    altitud CDATA #REQUIRED
+>
+
+<!ELEMENT vencedor EMPTY>
+<!ATTLIST vencedor
+    nombre CDATA #REQUIRED
+    tiempo CDATA #REQUIRED
+>
+
+<!ELEMENT clasificacion (piloto+)>
+<!ELEMENT piloto EMPTY>
+<!ATTLIST piloto
+    puesto CDATA #REQUIRED
+    nombre CDATA #REQUIRED
+    puntos CDATA #REQUIRED
+>
