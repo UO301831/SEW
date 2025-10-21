@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE circuito SYSTEM "circuito.dtd">
-
-<circuito>
+<circuito xsi:noNamespaceSchemaLocation="circuito.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <nombre>Red Bull Ring - Spielberg</nombre>
   <longitud medida="m">4300</longitud>
   <anchura medida="m">12</anchura>

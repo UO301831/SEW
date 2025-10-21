@@ -42,9 +42,6 @@ header h1 {
   }
 }
 
-
-
-
 nav {
   display: flex;
   flex-wrap: wrap;              /* Si no caben los enlaces, se van a otra línea */
