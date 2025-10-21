@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<circuito xsi:noNamespaceSchemaLocation="circuito.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<circuito xmlns="http://www.uniovi.es"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.uniovi.es circuito.xsd">  
+          
   <nombre>Red Bull Ring - Spielberg</nombre>
   <longitud medida="m">4300</longitud>
   <anchura medida="m">12</anchura>
-  <fecha fechaISO="2025-08-17">Domingo 17 de agosto de 2025</fecha>
-  <hora>14:00h</hora>
+  <fecha fechaISO="2025-08-17">2025-08-17</fecha>
+  <hora>14:00:00</hora>
   <vueltas>28</vueltas>
   <localidad_proxima>Zeltweg</localidad_proxima>
   <pais>Austria</pais>
@@ -25,30 +28,54 @@
     <video nombre="Circuito" src="multimedia/circuito.mp4"/>
   </multimedia>
 
-  <origen nombre="Punto de origen de la pista" longitud="14°45'54E" latitud="47°13'12N" altitud="677"/>
+  <origen nombre="Punto de origen de la pista" longitud="14.765" latitud="47.22" altitud="678"/>
 
   <puntos>
-    <tramo distancia="800" unidad="m" sector="1">
-      <fin longitud="14°45'58E" latitud="47°13'15N" altitud="678"/>
+    <tramo distancia="400" unidad="m" sector="1">
+      <fin longitud="14.769721" latitud="47.22" altitud="683"/>
     </tramo>
-    <tramo distancia="700" unidad="m" sector="2">
-      <fin longitud="14°45'56E" latitud="47°13'20N" altitud="679"/>
+    <tramo distancia="600" unidad="m" sector="2">
+      <fin longitud="14.768332" latitud="47.221943" altitud="696"/>
     </tramo>
-    <tramo distancia="600" unidad="m" sector="3">
-      <fin longitud="14°45'51E" latitud="47°13'18N" altitud="676"/>
+    <tramo distancia="700" unidad="m" sector="3">
+      <fin longitud="14.765277" latitud="47.223054" altitud="709"/>
     </tramo>
-    <tramo distancia="700" unidad="m" sector="4">
-      <fin longitud="14°45'48E" latitud="47°13'14N" altitud="675"/>
+    <tramo distancia="600" unidad="m" sector="4">
+      <fin longitud="14.764166" latitud="47.224721" altitud="743"/>
     </tramo>
-    <tramo distancia="600" unidad="m" sector="5">
-      <fin longitud="14°45'50E" latitud="47°13'10N" altitud="676"/>
+    <tramo distancia="500" unidad="m" sector="5">
+      <fin longitud="14.765555" latitud="47.225" altitud="744"/>
     </tramo>
-    <tramo distancia="900" unidad="m" sector="6">
-      <fin longitud="14°45'54E" latitud="47°13'12N" altitud="677"/>
+    <tramo distancia="700" unidad="m" sector="6">
+      <fin longitud="14.766666" latitud="47.225832" altitud="730"/>
+    </tramo>
+    <tramo distancia="600" unidad="m" sector="7">
+      <fin longitud="14.773054" latitud="47.225554" altitud="713"/>
+    </tramo>
+    <tramo distancia="1200" unidad="m" sector="8">
+      <fin longitud="14.761944" latitud="47.224443" altitud="708"/>
+    </tramo>
+    <tramo distancia="700" unidad="m" sector="9">
+      <fin longitud="14.758888" latitud="47.225" altitud="710"/>
+    </tramo>
+    <tramo distancia="500" unidad="m" sector="10">
+      <fin longitud="14.759722" latitud="47.222221" altitud="692"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="11">
+      <fin longitud="14.761944" latitud="47.222221" altitud="693"/>
+    </tramo>
+    <tramo distancia="600" unidad="m" sector="12">
+      <fin longitud="14.765833" latitud="47.223054" altitud="700"/>
+    </tramo>
+    <tramo distancia="700" unidad="m" sector="13">
+      <fin longitud="14.77" latitud="47.223054" altitud="696"/>
+    </tramo>
+    <tramo distancia="800" unidad="m" sector="14">
+      <fin longitud="14.769443" latitud="47.220832" altitud="682"/>
     </tramo>
   </puntos>
 
-  <vencedor nombre="Marc Márquez" tiempo="42:11.006"/>
+  <vencedor nombre="Marc Márquez" tiempo="PT42M11.006S"/>
 
   <clasificacion>
     <piloto puesto="1" nombre="Marc Márquez" puntos="545"/>
