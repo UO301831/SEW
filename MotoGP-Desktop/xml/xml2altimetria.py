@@ -208,15 +208,14 @@ def generar_altimetria(xmlfile, svgfile, width=1200, height=500):
     # dibujar línea superior del perfil (solo la línea entre puntos reales)
     svg.polyline(pts_svg, stroke="#b52b2b", stroke_width=2, fill="none")
 
-    # dibujar puntos y etiquetas cada N puntos
+    # dibujar puntos y etiquetas cada N puntos (solo altitudes arriba, sin distancias abajo)
     label_every = max(1, len(pts_svg) // 12)
     for idx, (sx, sy) in enumerate(pts_svg):
         svg.line(sx, sy, sx, sy, stroke="#000000", stroke_width=1)  # punto (no visible salvo grosor)
         if (idx % label_every == 0) or idx == 0 or idx == len(pts_svg)-1:
-            dist_m = distancias[idx]
             alt_m = altitudes[idx]
             svg.text(sx, sy - 8, f"{int(alt_m)} m", font_size=10, anchor="middle")
-            svg.text(sx, y0 + 28, f"{int(dist_m)}", font_size=9, anchor="middle")
+            # Eliminada la línea que ponía los números de distancia abajo
 
     # título
     svg.text(width/2, 18, "Perfil altimétrico del circuito", font_size=16, anchor="middle")

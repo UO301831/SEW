@@ -3,27 +3,27 @@
 <rect x="0" y="0" width="1200" height="500" stroke="none" fill="white" stroke-width="1" />
 <line x1="80" y1="460" x2="1120" y2="460" stroke="#000000" stroke-width="1.2" />
 <line x1="80" y1="40" x2="80" y2="460" stroke="#000000" stroke-width="1.2" />
-<text x="40" y="50" font-size="12" text-anchor="end">744 m</text>
+<text x="40" y="50" font-size="12" text-anchor="end">743 m</text>
 <text x="40" y="460" font-size="12" text-anchor="end">678 m</text>
 <text x="600.0" y="495" font-size="14" text-anchor="middle">Distancia (m)</text>
 <line x1="80.0" y1="460" x2="80.0" y2="40" stroke="#cccccc" stroke-width="0.8" stroke-dasharray="2,2" />
 <text x="80.0" y="475" font-size="10" text-anchor="middle">0</text>
 <line x1="210.0" y1="460" x2="210.0" y2="40" stroke="#cccccc" stroke-width="0.8" stroke-dasharray="2,2" />
-<text x="210.0" y="475" font-size="10" text-anchor="middle">1125</text>
+<text x="210.0" y="475" font-size="10" text-anchor="middle">537</text>
 <line x1="340.0" y1="460" x2="340.0" y2="40" stroke="#cccccc" stroke-width="0.8" stroke-dasharray="2,2" />
-<text x="340.0" y="475" font-size="10" text-anchor="middle">2250</text>
+<text x="340.0" y="475" font-size="10" text-anchor="middle">1075</text>
 <line x1="470.0" y1="460" x2="470.0" y2="40" stroke="#cccccc" stroke-width="0.8" stroke-dasharray="2,2" />
-<text x="470.0" y="475" font-size="10" text-anchor="middle">3375</text>
+<text x="470.0" y="475" font-size="10" text-anchor="middle">1612</text>
 <line x1="600.0" y1="460" x2="600.0" y2="40" stroke="#cccccc" stroke-width="0.8" stroke-dasharray="2,2" />
-<text x="600.0" y="475" font-size="10" text-anchor="middle">4500</text>
+<text x="600.0" y="475" font-size="10" text-anchor="middle">2150</text>
 <line x1="730.0" y1="460" x2="730.0" y2="40" stroke="#cccccc" stroke-width="0.8" stroke-dasharray="2,2" />
-<text x="730.0" y="475" font-size="10" text-anchor="middle">5625</text>
+<text x="730.0" y="475" font-size="10" text-anchor="middle">2687</text>
 <line x1="860.0" y1="460" x2="860.0" y2="40" stroke="#cccccc" stroke-width="0.8" stroke-dasharray="2,2" />
-<text x="860.0" y="475" font-size="10" text-anchor="middle">6750</text>
+<text x="860.0" y="475" font-size="10" text-anchor="middle">3225</text>
 <line x1="990.0" y1="460" x2="990.0" y2="40" stroke="#cccccc" stroke-width="0.8" stroke-dasharray="2,2" />
-<text x="990.0" y="475" font-size="10" text-anchor="middle">7875</text>
+<text x="990.0" y="475" font-size="10" text-anchor="middle">3762</text>
 <line x1="1120.0" y1="460" x2="1120.0" y2="40" stroke="#cccccc" stroke-width="0.8" stroke-dasharray="2,2" />
-<text x="1120.0" y="475" font-size="10" text-anchor="middle">9000</text>
+<text x="1120.0" y="475" font-size="10" text-anchor="middle">4300</text>
 <line x1="80" y1="460.0" x2="1120" y2="460.0" stroke="#eeeeee" stroke-width="0.8" />
 <text x="70" y="464.0" font-size="10" text-anchor="end">678</text>
 <line x1="80" y1="390.0" x2="1120" y2="390.0" stroke="#eeeeee" stroke-width="0.8" />
@@ -37,53 +37,60 @@
 <line x1="80" y1="110.0" x2="1120" y2="110.0" stroke="#eeeeee" stroke-width="0.8" />
 <text x="70" y="114.0" font-size="10" text-anchor="end">733</text>
 <line x1="80" y1="40.0" x2="1120" y2="40.0" stroke="#eeeeee" stroke-width="0.8" />
-<text x="70" y="44.0" font-size="10" text-anchor="end">744</text>
-<polyline points="80.00,460.00 126.22,428.18 195.56,345.45 276.44,262.73 345.78,46.36 403.56,40.00 484.44,129.09 553.78,237.27 692.44,269.09 773.33,256.36 831.11,370.91 877.33,364.55 946.67,320.00 1027.56,345.45 1120.00,434.55 1120.00,460.00 80.00,460.00" stroke="#d9534f" stroke-width="2" fill="#f2dede" opacity="0.9" />
-<polyline points="80.00,460.00 126.22,428.18 195.56,345.45 276.44,262.73 345.78,46.36 403.56,40.00 484.44,129.09 553.78,237.27 692.44,269.09 773.33,256.36 831.11,370.91 877.33,364.55 946.67,320.00 1027.56,345.45 1120.00,434.55" stroke="#b52b2b" stroke-width="2" fill="none" />
+<text x="70" y="44.0" font-size="10" text-anchor="end">743</text>
+<polyline points="80.00,460.00 104.19,426.95 128.37,366.54 152.56,330.27 176.74,289.91 200.93,158.80 249.30,61.02 297.67,40.21 346.05,40.00 394.42,130.56 418.60,197.69 466.98,226.18 491.16,234.92 539.53,266.28 587.91,271.05 612.09,275.81 660.47,257.60 684.65,255.60 733.02,267.34 757.21,299.25 805.58,363.06 829.77,380.20 853.95,386.49 878.14,385.26 902.33,362.69 926.51,364.08 950.70,318.40 974.88,343.65 999.07,353.11 1023.26,407.76 1047.44,420.25 1071.63,434.84 1095.81,449.01 1120.00,460.00 1120.00,460.00 80.00,460.00" stroke="#d9534f" stroke-width="2" fill="#f2dede" opacity="0.9" />
+<polyline points="80.00,460.00 104.19,426.95 128.37,366.54 152.56,330.27 176.74,289.91 200.93,158.80 249.30,61.02 297.67,40.21 346.05,40.00 394.42,130.56 418.60,197.69 466.98,226.18 491.16,234.92 539.53,266.28 587.91,271.05 612.09,275.81 660.47,257.60 684.65,255.60 733.02,267.34 757.21,299.25 805.58,363.06 829.77,380.20 853.95,386.49 878.14,385.26 902.33,362.69 926.51,364.08 950.70,318.40 974.88,343.65 999.07,353.11 1023.26,407.76 1047.44,420.25 1071.63,434.84 1095.81,449.01 1120.00,460.00" stroke="#b52b2b" stroke-width="2" fill="none" />
 <line x1="80.0" y1="460.0" x2="80.0" y2="460.0" stroke="#000000" stroke-width="1" />
 <text x="80.0" y="452.0" font-size="10" text-anchor="middle">678 m</text>
-<text x="80.0" y="488" font-size="9" text-anchor="middle">0</text>
-<line x1="126.22222222222223" y1="428.1818181818182" x2="126.22222222222223" y2="428.1818181818182" stroke="#000000" stroke-width="1" />
-<text x="126.22222222222223" y="420.1818181818182" font-size="10" text-anchor="middle">683 m</text>
-<text x="126.22222222222223" y="488" font-size="9" text-anchor="middle">400</text>
-<line x1="195.55555555555554" y1="345.4545454545455" x2="195.55555555555554" y2="345.4545454545455" stroke="#000000" stroke-width="1" />
-<text x="195.55555555555554" y="337.4545454545455" font-size="10" text-anchor="middle">696 m</text>
-<text x="195.55555555555554" y="488" font-size="9" text-anchor="middle">1000</text>
-<line x1="276.44444444444446" y1="262.72727272727275" x2="276.44444444444446" y2="262.72727272727275" stroke="#000000" stroke-width="1" />
-<text x="276.44444444444446" y="254.72727272727275" font-size="10" text-anchor="middle">709 m</text>
-<text x="276.44444444444446" y="488" font-size="9" text-anchor="middle">1700</text>
-<line x1="345.77777777777777" y1="46.363636363636374" x2="345.77777777777777" y2="46.363636363636374" stroke="#000000" stroke-width="1" />
-<text x="345.77777777777777" y="38.363636363636374" font-size="10" text-anchor="middle">743 m</text>
-<text x="345.77777777777777" y="488" font-size="9" text-anchor="middle">2300</text>
-<line x1="403.55555555555554" y1="40.0" x2="403.55555555555554" y2="40.0" stroke="#000000" stroke-width="1" />
-<text x="403.55555555555554" y="32.0" font-size="10" text-anchor="middle">744 m</text>
-<text x="403.55555555555554" y="488" font-size="9" text-anchor="middle">2800</text>
-<line x1="484.4444444444444" y1="129.09090909090912" x2="484.4444444444444" y2="129.09090909090912" stroke="#000000" stroke-width="1" />
-<text x="484.4444444444444" y="121.09090909090912" font-size="10" text-anchor="middle">730 m</text>
-<text x="484.4444444444444" y="488" font-size="9" text-anchor="middle">3500</text>
-<line x1="553.7777777777778" y1="237.27272727272728" x2="553.7777777777778" y2="237.27272727272728" stroke="#000000" stroke-width="1" />
-<text x="553.7777777777778" y="229.27272727272728" font-size="10" text-anchor="middle">713 m</text>
-<text x="553.7777777777778" y="488" font-size="9" text-anchor="middle">4100</text>
-<line x1="692.4444444444445" y1="269.0909090909091" x2="692.4444444444445" y2="269.0909090909091" stroke="#000000" stroke-width="1" />
-<text x="692.4444444444445" y="261.0909090909091" font-size="10" text-anchor="middle">708 m</text>
-<text x="692.4444444444445" y="488" font-size="9" text-anchor="middle">5300</text>
-<line x1="773.3333333333333" y1="256.3636363636364" x2="773.3333333333333" y2="256.3636363636364" stroke="#000000" stroke-width="1" />
-<text x="773.3333333333333" y="248.36363636363637" font-size="10" text-anchor="middle">710 m</text>
-<text x="773.3333333333333" y="488" font-size="9" text-anchor="middle">6000</text>
-<line x1="831.1111111111111" y1="370.9090909090909" x2="831.1111111111111" y2="370.9090909090909" stroke="#000000" stroke-width="1" />
-<text x="831.1111111111111" y="362.9090909090909" font-size="10" text-anchor="middle">692 m</text>
-<text x="831.1111111111111" y="488" font-size="9" text-anchor="middle">6500</text>
-<line x1="877.3333333333333" y1="364.54545454545456" x2="877.3333333333333" y2="364.54545454545456" stroke="#000000" stroke-width="1" />
-<text x="877.3333333333333" y="356.54545454545456" font-size="10" text-anchor="middle">693 m</text>
-<text x="877.3333333333333" y="488" font-size="9" text-anchor="middle">6900</text>
-<line x1="946.6666666666666" y1="320.0" x2="946.6666666666666" y2="320.0" stroke="#000000" stroke-width="1" />
-<text x="946.6666666666666" y="312.0" font-size="10" text-anchor="middle">700 m</text>
-<text x="946.6666666666666" y="488" font-size="9" text-anchor="middle">7500</text>
-<line x1="1027.5555555555557" y1="345.4545454545455" x2="1027.5555555555557" y2="345.4545454545455" stroke="#000000" stroke-width="1" />
-<text x="1027.5555555555557" y="337.4545454545455" font-size="10" text-anchor="middle">696 m</text>
-<text x="1027.5555555555557" y="488" font-size="9" text-anchor="middle">8200</text>
-<line x1="1120.0" y1="434.54545454545456" x2="1120.0" y2="434.54545454545456" stroke="#000000" stroke-width="1" />
-<text x="1120.0" y="426.54545454545456" font-size="10" text-anchor="middle">682 m</text>
-<text x="1120.0" y="488" font-size="9" text-anchor="middle">9000</text>
+<line x1="104.18604651162791" y1="426.9522758761984" x2="104.18604651162791" y2="426.9522758761984" stroke="#000000" stroke-width="1" />
+<line x1="128.37209302325581" y1="366.53529646933424" x2="128.37209302325581" y2="366.53529646933424" stroke="#000000" stroke-width="1" />
+<text x="128.37209302325581" y="358.53529646933424" font-size="10" text-anchor="middle">692 m</text>
+<line x1="152.5581395348837" y1="330.26641445267774" x2="152.5581395348837" y2="330.26641445267774" stroke="#000000" stroke-width="1" />
+<line x1="176.74418604651163" y1="289.909365143066" x2="176.74418604651163" y2="289.909365143066" stroke="#000000" stroke-width="1" />
+<text x="176.74418604651163" y="281.909365143066" font-size="10" text-anchor="middle">704 m</text>
+<line x1="200.93023255813955" y1="158.79942357566807" x2="200.93023255813955" y2="158.79942357566807" stroke="#000000" stroke-width="1" />
+<line x1="249.30232558139534" y1="61.020018025495744" x2="249.30232558139534" y2="61.020018025495744" stroke="#000000" stroke-width="1" />
+<text x="249.30232558139534" y="53.020018025495744" font-size="10" text-anchor="middle">740 m</text>
+<line x1="297.6744186046511" y1="40.21401284808144" x2="297.6744186046511" y2="40.21401284808144" stroke="#000000" stroke-width="1" />
+<line x1="346.04651162790697" y1="40.0" x2="346.04651162790697" y2="40.0" stroke="#000000" stroke-width="1" />
+<text x="346.04651162790697" y="32.0" font-size="10" text-anchor="middle">743 m</text>
+<line x1="394.4186046511628" y1="130.555095209078" x2="394.4186046511628" y2="130.555095209078" stroke="#000000" stroke-width="1" />
+<line x1="418.6046511627907" y1="197.69158883111834" x2="418.6046511627907" y2="197.69158883111834" stroke="#000000" stroke-width="1" />
+<text x="418.6046511627907" y="189.69158883111834" font-size="10" text-anchor="middle">719 m</text>
+<line x1="466.9767441860465" y1="226.1830473692064" x2="466.9767441860465" y2="226.1830473692064" stroke="#000000" stroke-width="1" />
+<line x1="491.16279069767444" y1="234.9238835008662" x2="491.16279069767444" y2="234.9238835008662" stroke="#000000" stroke-width="1" />
+<text x="491.16279069767444" y="226.9238835008662" font-size="10" text-anchor="middle">713 m</text>
+<line x1="539.5348837209302" y1="266.27642307671164" x2="539.5348837209302" y2="266.27642307671164" stroke="#000000" stroke-width="1" />
+<line x1="587.9069767441861" y1="271.0514870928703" x2="587.9069767441861" y2="271.0514870928703" stroke="#000000" stroke-width="1" />
+<text x="587.9069767441861" y="263.0514870928703" font-size="10" text-anchor="middle">707 m</text>
+<line x1="612.0930232558139" y1="275.8122829118971" x2="612.0930232558139" y2="275.8122829118971" stroke="#000000" stroke-width="1" />
+<line x1="660.4651162790698" y1="257.59598712341796" x2="660.4651162790698" y2="257.59598712341796" stroke="#000000" stroke-width="1" />
+<text x="660.4651162790698" y="249.59598712341796" font-size="10" text-anchor="middle">709 m</text>
+<line x1="684.6511627906976" y1="255.59881746579325" x2="684.6511627906976" y2="255.59881746579325" stroke="#000000" stroke-width="1" />
+<line x1="733.0232558139535" y1="267.3357369708334" x2="733.0232558139535" y2="267.3357369708334" stroke="#000000" stroke-width="1" />
+<text x="733.0232558139535" y="259.3357369708334" font-size="10" text-anchor="middle">708 m</text>
+<line x1="757.2093023255813" y1="299.2465181830538" x2="757.2093023255813" y2="299.2465181830538" stroke="#000000" stroke-width="1" />
+<line x1="805.5813953488372" y1="363.06234800490586" x2="805.5813953488372" y2="363.06234800490586" stroke="#000000" stroke-width="1" />
+<text x="805.5813953488372" y="355.06234800490586" font-size="10" text-anchor="middle">693 m</text>
+<line x1="829.767441860465" y1="380.1951201308104" x2="829.767441860465" y2="380.1951201308104" stroke="#000000" stroke-width="1" />
+<line x1="853.953488372093" y1="386.49232607551505" x2="853.953488372093" y2="386.49232607551505" stroke="#000000" stroke-width="1" />
+<text x="853.953488372093" y="378.49232607551505" font-size="10" text-anchor="middle">689 m</text>
+<line x1="878.1395348837209" y1="385.2563912294" x2="878.1395348837209" y2="385.2563912294" stroke="#000000" stroke-width="1" />
+<line x1="902.3255813953489" y1="362.6947090085805" x2="902.3255813953489" y2="362.6947090085805" stroke="#000000" stroke-width="1" />
+<text x="902.3255813953489" y="354.6947090085805" font-size="10" text-anchor="middle">693 m</text>
+<line x1="926.5116279069767" y1="364.0753281915554" x2="926.5116279069767" y2="364.0753281915554" stroke="#000000" stroke-width="1" />
+<line x1="950.6976744186046" y1="318.3961780785521" x2="950.6976744186046" y2="318.3961780785521" stroke="#000000" stroke-width="1" />
+<text x="950.6976744186046" y="310.3961780785521" font-size="10" text-anchor="middle">700 m</text>
+<line x1="974.8837209302326" y1="343.6525689724076" x2="974.8837209302326" y2="343.6525689724076" stroke="#000000" stroke-width="1" />
+<line x1="999.0697674418604" y1="353.1128705691451" x2="999.0697674418604" y2="353.1128705691451" stroke="#000000" stroke-width="1" />
+<text x="999.0697674418604" y="345.1128705691451" font-size="10" text-anchor="middle">694 m</text>
+<line x1="1023.2558139534883" y1="407.75553229066514" x2="1023.2558139534883" y2="407.75553229066514" stroke="#000000" stroke-width="1" />
+<line x1="1047.4418604651164" y1="420.24710193937455" x2="1047.4418604651164" y2="420.24710193937455" stroke="#000000" stroke-width="1" />
+<text x="1047.4418604651164" y="412.24710193937455" font-size="10" text-anchor="middle">684 m</text>
+<line x1="1071.6279069767443" y1="434.8358504026425" x2="1071.6279069767443" y2="434.8358504026425" stroke="#000000" stroke-width="1" />
+<line x1="1095.8139534883721" y1="449.0080756757561" x2="1095.8139534883721" y2="449.0080756757561" stroke="#000000" stroke-width="1" />
+<text x="1095.8139534883721" y="441.0080756757561" font-size="10" text-anchor="middle">679 m</text>
+<line x1="1120.0" y1="460.0" x2="1120.0" y2="460.0" stroke="#000000" stroke-width="1" />
+<text x="1120.0" y="452.0" font-size="10" text-anchor="middle">678 m</text>
 <text x="600.0" y="18" font-size="16" text-anchor="middle">Perfil altimétrico del circuito</text>
 </svg>
