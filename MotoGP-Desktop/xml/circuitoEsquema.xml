@@ -28,50 +28,107 @@
     <video nombre="Circuito" src="multimedia/circuito.mp4"/>
   </multimedia>
 
-  <origen nombre="Punto de origen de la pista" longitud="14.765" latitud="47.22" altitud="678"/>
+  <origen nombre="Punto de origen de la pista" longitud="14.76488816433875" latitud="47.21995421616413" altitud="678.2203459524465"/>
 
   <puntos>
     <tramo distancia="400" unidad="m" sector="1">
-      <fin longitud="14.769721" latitud="47.22" altitud="683"/>
+      <fin longitud="14.76247054515109" latitud="47.21950853577857" altitud="683.3954180086854"/>
     </tramo>
-    <tramo distancia="600" unidad="m" sector="2">
-      <fin longitud="14.768332" latitud="47.221943" altitud="696"/>
+    <tramo distancia="400" unidad="m" sector="2">
+      <fin longitud="14.76096424045114" latitud="47.2192633771962" altitud="692.8563485308463"/>
     </tramo>
-    <tramo distancia="700" unidad="m" sector="3">
-      <fin longitud="14.765277" latitud="47.223054" altitud="709"/>
+    <tramo distancia="400" unidad="m" sector="3">
+      <fin longitud="14.75848655001476" latitud="47.22174025733664" altitud="698.5358342688746"/>
     </tramo>
-    <tramo distancia="600" unidad="m" sector="4">
-      <fin longitud="14.764166" latitud="47.224721" altitud="743"/>
+    <tramo distancia="400" unidad="m" sector="4">
+      <fin longitud="14.7568254237162" latitud="47.22406302967058" altitud="704.8555020732912"/>
     </tramo>
-    <tramo distancia="500" unidad="m" sector="5">
-      <fin longitud="14.765555" latitud="47.225" altitud="744"/>
+    <tramo distancia="400" unidad="m" sector="5">
+      <fin longitud="14.75505219469349" latitud="47.22541750195077" altitud="725.3865193487559"/>
     </tramo>
-    <tramo distancia="700" unidad="m" sector="6">
-      <fin longitud="14.766666" latitud="47.225832" altitud="730"/>
+    <tramo distancia="400" unidad="m" sector="6">
+      <fin longitud="14.75420995737394" latitud="47.22601132591272" altitud="740.6981779501998"/>
     </tramo>
-    <tramo distancia="600" unidad="m" sector="7">
-      <fin longitud="14.773054" latitud="47.225554" altitud="713"/>
+    <tramo distancia="400" unidad="m" sector="7">
+      <fin longitud="14.75408674000801" latitud="47.22619841656737" altitud="743.9562714755585"/>
     </tramo>
-    <tramo distancia="1200" unidad="m" sector="8">
-      <fin longitud="14.761944" latitud="47.224443" altitud="708"/>
+    <tramo distancia="400" unidad="m" sector="8">
+      <fin longitud="14.75598660586622" latitud="47.22636073279963" altitud="743.9897845824107"/>
     </tramo>
-    <tramo distancia="700" unidad="m" sector="9">
-      <fin longitud="14.758888" latitud="47.225" altitud="710"/>
+    <tramo distancia="400" unidad="m" sector="9">
+      <fin longitud="14.76022977243373" latitud="47.22593565401618" altitud="729.8094089229249"/>
     </tramo>
-    <tramo distancia="500" unidad="m" sector="10">
-      <fin longitud="14.759722" latitud="47.222221" altitud="692"/>
+    <tramo distancia="400" unidad="m" sector="10">
+      <fin longitud="14.76327624287653" latitud="47.22572814156786" altitud="719.2962434536255"/>
     </tramo>
     <tramo distancia="400" unidad="m" sector="11">
-      <fin longitud="14.761944" latitud="47.222221" altitud="693"/>
+      <fin longitud="14.76441185656945" latitud="47.22569637569416" altitud="714.8346548017232"/>
     </tramo>
-    <tramo distancia="600" unidad="m" sector="12">
-      <fin longitud="14.765833" latitud="47.223054" altitud="700"/>
+    <tramo distancia="400" unidad="m" sector="12">
+      <fin longitud="14.76469272954954" latitud="47.2254398384956" altitud="713.4658931694952"/>
     </tramo>
-    <tramo distancia="700" unidad="m" sector="13">
-      <fin longitud="14.77" latitud="47.223054" altitud="696"/>
+    <tramo distancia="400" unidad="m" sector="13">
+      <fin longitud="14.7642727493031" latitud="47.22496188254296" altitud="708.5562766753831"/>
     </tramo>
-    <tramo distancia="800" unidad="m" sector="14">
-      <fin longitud="14.769443" latitud="47.220832" altitud="682"/>
+    <tramo distancia="400" unidad="m" sector="14">
+      <fin longitud="14.76364002954142" latitud="47.22459280814623" altitud="707.8085307711809"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="15">
+      <fin longitud="14.76258709326563" latitud="47.22433412207197" altitud="707.063019179635"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="16">
+      <fin longitud="14.76019897059693" latitud="47.22452349240594" altitud="709.9155800080295"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="17">
+      <fin longitud="14.75923843664619" latitud="47.22448556901939" altitud="710.2283245966742"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="18">
+      <fin longitud="14.75867539650145" latitud="47.224065800168" altitud="708.3903945797895"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="19">
+      <fin longitud="14.75866910906951" latitud="47.2236895272607" altitud="703.3933608498577"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="20">
+      <fin longitud="14.75952111288485" latitud="47.22263634222588" altitud="693.4001910805993"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="21">
+      <fin longitud="14.75998087176524" latitud="47.22218327414424" altitud="690.7173034498949"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="22">
+      <fin longitud="14.76061502636984" latitud="47.22203455324284" altitud="689.7311994024651"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="23">
+      <fin longitud="14.76135312913455" latitud="47.22225969393719" altitud="689.924739262018"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="24">
+      <fin longitud="14.76231902452368" latitud="47.22289601157985" altitud="693.4577611053774"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="25">
+      <fin longitud="14.76350307225884" latitud="47.22310736145241" altitud="693.2415645610297"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="26">
+      <fin longitud="14.76854211557733" latitud="47.22319036731589" altitud="700.3946408944252"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="27">
+      <fin longitud="14.7697185902665" latitud="47.22308864534591" altitud="696.4396441065494"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="28">
+      <fin longitud="14.77007807581749" latitud="47.22273503405395" altitud="694.9582185701504"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="29">
+      <fin longitud="14.77057104109345" latitud="47.22161114032276" altitud="686.4015109828375"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="30">
+      <fin longitud="14.77065472027737" latitud="47.22133444366934" altitud="684.4454073556882"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="31">
+      <fin longitud="14.7701857271007" latitud="47.22104072362017" altitud="682.1608983158242"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="32">
+      <fin longitud="14.76887417735603" latitud="47.22067226076661" altitud="679.9416142673716"/>
+    </tramo>
+    <tramo distancia="400" unidad="m" sector="33">
+      <fin longitud="14.76488816433875" latitud="47.21995421616413" altitud="678.2203459524465"/>
     </tramo>
   </puntos>
 

@@ -3,9 +3,10 @@ import xml.etree.ElementTree as ET
 def dms_to_decimal(coord_str):
     """
     Convierte una coordenada en formato DMS (ej. "14°45'54E") o decimal (ej. "14.765") a grados decimales.
+    Para formato decimal, devuelve el string tal cual para evitar redondeo.
     """
     coord_str = coord_str.strip()
-
+    
     if '°' in coord_str:
         # Formato DMS
         parts = coord_str.replace('°', "'").replace("'", "'").replace("''", "'").split("'")
@@ -13,50 +14,50 @@ def dms_to_decimal(coord_str):
         minutes = int(parts[1])
         seconds = int(parts[2][:-1])  # Quitar la letra de dirección
         direction = parts[2][-1].upper()
-
+        
         # Calcular decimal
         decimal = degrees + minutes / 60 + seconds / 3600
-
+        
         # Aplicar signo según dirección
         if direction in ['S', 'W']:
             decimal = -decimal
-
-        return decimal
+        
+        return str(decimal)  # Devolver como string para consistencia
     else:
-        # Formato decimal
-        return float(coord_str)
+        # Formato decimal: devolver tal cual para evitar redondeo
+        return coord_str
 
 def xml_to_kml(xml_file, kml_file):
     # Registrar el namespace para XPath
     ns = {'circuito': 'http://www.uniovi.es'}
-
+    
     # Leer el archivo XML y construir el árbol DOM
     tree = ET.parse(xml_file)
     root = tree.getroot()
-
+    
     # Extraer el nombre del circuito usando XPath
     nombre_elem = root.find('.//circuito:nombre', ns)
     nombre_circuito = nombre_elem.text if nombre_elem is not None else 'Circuito'
-
-    # Extraer el origen usando XPath
+    
+    # Extraer el origen usando XPath (tipo xs:double en XSD, mantener como string)
     origen = root.find('.//circuito:origen', ns)
     if origen is not None:
         lon_origen = dms_to_decimal(origen.get('longitud'))
         lat_origen = dms_to_decimal(origen.get('latitud'))
-        alt_origen = float(origen.get('altitud'))
+        alt_origen = origen.get('altitud')  # xs:double, mantener como string
     else:
         raise ValueError("No se encontró el elemento <origen>")
-
-    # Extraer los puntos finales de los tramos usando XPath
+    
+    # Extraer los puntos finales de los tramos usando XPath (longitud y latitud xs:string, altitud xs:integer)
     tramos = root.findall('.//circuito:tramo/circuito:fin', ns)
     coordenadas = [(lon_origen, lat_origen, alt_origen)]  # Iniciar con el origen
-
+    
     for fin in tramos:
-        lon = dms_to_decimal(fin.get('longitud'))
-        lat = dms_to_decimal(fin.get('latitud'))
-        alt = float(fin.get('altitud'))
+        lon = dms_to_decimal(fin.get('longitud'))  # xs:string, mantener como string
+        lat = dms_to_decimal(fin.get('latitud'))  # xs:string, mantener como string
+        alt = fin.get('altitud')  # xs:integer, mantener como string
         coordenadas.append((lon, lat, alt))
-
+    
     # Generar el archivo KML usando plantillas
     with open(kml_file, 'w', encoding='utf-8') as f:
         # Prólogo y encabezado
@@ -68,11 +69,11 @@ def xml_to_kml(xml_file, kml_file):
         f.write(f'<name>{nombre_circuito}</name>\n')
         f.write('<LineString>\n')
         f.write('<coordinates>\n')
-
-        # Escribir las coordenadas extraídas (lon,lat,alt)
+        
+        # Escribir las coordenadas extraídas (lon,lat,alt) como strings para precisión exacta
         for lon, lat, alt in coordenadas:
             f.write(f'{lon},{lat},{alt}\n')
-
+        
         # Epílogo
         f.write('</coordinates>\n')
         f.write('</LineString>\n')

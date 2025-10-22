@@ -137,9 +137,9 @@
   <xs:element name="origen">
     <xs:complexType>
       <xs:attribute name="nombre" type="xs:string" use="optional"/>
-      <xs:attribute name="longitud" type="xs:string" use="required"/>
-      <xs:attribute name="latitud" type="xs:string" use="required"/>
-      <xs:attribute name="altitud" type="xs:integer" use="required"/>
+      <xs:attribute name="longitud" type="xs:double" use="required"/>
+      <xs:attribute name="latitud" type="xs:double" use="required"/>
+      <xs:attribute name="altitud" type="xs:double" use="required"/>
     </xs:complexType>
   </xs:element>
 
@@ -174,7 +174,7 @@
     <xs:complexType>
       <xs:attribute name="longitud" type="xs:string" use="required"/>
       <xs:attribute name="latitud" type="xs:string" use="required"/>
-      <xs:attribute name="altitud" type="xs:integer" use="required"/>
+      <xs:attribute name="altitud" type="xs:string" use="required"/>
     </xs:complexType>
   </xs:element>
 

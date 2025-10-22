@@ -14,6 +14,20 @@ header h1 {
   margin: 0;        /* Quitar márgenes innecesarios */
 }
 
+.galeria {
+  display: flex;
+  flex-wrap: wrap;              /* Permite que las imágenes se envuelvan en filas */
+  gap: 1rem;                    /* Espaciado entre imágenes */
+  justify-content: center;      /* Centrar las imágenes */
+}
+.galeria img {
+  flex: 1 1 auto;               /* Las imágenes crecen y se encogen según el espacio */
+  max-width: 100%;              /* No exceder el ancho del contenedor */
+  height: auto;                 /* Mantener proporción */
+}
+
+
+
 /** Version para moviles*/
 
 @media (min-width: 320px) and (max-width: 799px){
@@ -40,6 +54,13 @@ header h1 {
   #migas{
     display: none
   }
+
+  .galeria {
+    flex-direction: column;    /* Apilar imágenes en columna */
+    align-items: center;       /* Centrar imágenes */
+  }
+
+
 }
 
 nav {
@@ -53,3 +74,4 @@ nav a {
   padding: 0.2rem 1.6rem;
   flex: 0 0 auto;   /* Los enlaces mantienen su tamaño natural */
 }
+
