@@ -1,6 +1,6 @@
 class Ciudad{
     constructor(ciudad,pais,gentilicio){
-        this.ciduad = ciudad
+        this.ciudad = ciudad
         this.gentilicio = gentilicio
         this.pais = pais
     }
@@ -11,16 +11,22 @@ class Ciudad{
     }
 
     cityToString(){
-        // TODO agregar el doc.write
+       
         return this.ciudad
     }
 
     countryToString(){
-        //TODO agregar el doc.write
+       
         return this.pais;
     }
 
-
+    buildDemographicInfo(){
+        const lista = document.createElement("ul")
+        const liPunto = document.createElement("li")
+        const liCoords = document.createElement("li")
+        liPunto.textContent = this.puntoCentral
+        liCoords.textContent = this.cantidadPoblacion
+    }
 
 
 }
