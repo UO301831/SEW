@@ -1,32 +1,37 @@
-class Ciudad{
-    constructor(ciudad,pais,gentilicio){
-        this.ciudad = ciudad
-        this.gentilicio = gentilicio
-        this.pais = pais
+class Ciudad {
+    constructor(ciudad, pais, gentilicio) {
+        this.ciudad = ciudad;
+        this.gentilicio = gentilicio;
+        this.pais = pais;
+        this.puntoCentral = null;
+        this.cantidadPoblacion = null;
     }
 
-    initialize_Geo(cantidadPoblacion,puntoCentral) {
-        this.puntoCentral = puntoCentral
-        this.cantidadPoblacion = cantidadPoblacion
+    initializeGeo(cantidadPoblacion, puntoCentral) {
+        this.cantidadPoblacion = cantidadPoblacion;
+        this.puntoCentral = puntoCentral;
     }
 
-    cityToString(){
-       
-        return this.ciudad
+    cityToString() {
+        return this.ciudad;
     }
 
-    countryToString(){
-       
+    countryToString() {
         return this.pais;
     }
 
-    buildDemographicInfo(){
-        const lista = document.createElement("ul")
-        const liPunto = document.createElement("li")
-        const liCoords = document.createElement("li")
-        liPunto.textContent = this.puntoCentral
-        liCoords.textContent = this.cantidadPoblacion
+    buildDemographicInfo() {
+        return `
+            <ul>
+                <li>Gentilicio: ${this.gentilicio}</li>
+                <li>Población: ${this.cantidadPoblacion}</li>
+            </ul>
+        `;
     }
 
-
+    writeCoordinates() {
+        const p = document.createElement("p");
+        p.innerHTML = `Coordenadas del punto central: ${this.puntoCentral}`;
+        document.getElementById("infoCiudad").appendChild(p);
+    }
 }
