@@ -3,7 +3,7 @@ class Memoria{
     }
 
     voltearCarta(carta) {
-        if (!carta.dataset.estado || carta.dataset.estado !== "volteada") {
+        if (!carta.dataset.estado || carta.dataset.estado != "volteada") {
             carta.dataset.estado = "volteada";
         } else {
             carta.removeAttribute("data-estado");

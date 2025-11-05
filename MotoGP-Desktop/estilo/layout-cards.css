@@ -3,11 +3,9 @@
 
 main {
     display: grid;
-    grid-template-columns: repeat(4, 10em); 
-    grid-auto-rows: 200px;
-    gap: 0.3em;
+    grid-template-columns: repeat(4, 150px);
+    gap: 0.5em;
     justify-content: center;
-    align-items: center;
     margin: 1em auto;
 }
 
