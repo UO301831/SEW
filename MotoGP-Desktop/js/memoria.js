@@ -1,37 +1,40 @@
 class Memoria {
+    #tablero_bloqueado;
+    #primera_carta;
+    #segunda_carta;
     constructor() {
-        this.tablero_bloqueado = false;
-        this.primera_carta = null;
-        this.segunda_carta = null;
+        this.#tablero_bloqueado = false;
+        this.#primera_carta = null;
+        this.#segunda_carta = null;
 
-        this.barajarCartas();
+        this.#barajarCartas();
 
         this.cronometro = new Cronometro();
         this.cronometro.arrancar();
     }
 
-    barajarCartas() {
-        var main = document.querySelector("main");
-        var cartas = main.getElementsByTagName("article");
-
-        var lista = [];
-        for (var i = 0; i < cartas.length; i++) {
-            lista.push(cartas[i]);
+    #barajarCartas() {
+        const main = document.querySelector("main");
+        const cartas = Array.from(main.getElementsByTagName("article"));
+    
+        for (let i = cartas.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [cartas[i], cartas[j]] = [cartas[j], cartas[i]];
         }
-
-        for (var i = lista.length - 1; i > 0; i--) {
-            var j = Math.floor(Math.random() * (i + 1));
-            main.appendChild(lista[j]);
-        }
+    
+        cartas.forEach(carta => {
+            main.appendChild(carta);
+            carta.addEventListener("click", () => this.voltearCarta(carta));
+        });
     }
 
-    reiniciarAtributos() {
-        this.tablero_bloqueado = false;
-        this.primera_carta = null;
-        this.segunda_carta = null;
+    #reiniciarAtributos() {
+        this.#tablero_bloqueado = false;
+        this.#primera_carta = null;
+        this.#segunda_carta = null;
     }
 
-    comprobarJuego() {
+    #comprobarJuego() {
         var cartas = document.getElementsByTagName("article");
         var todasReveladas = true;
 
@@ -48,37 +51,37 @@ class Memoria {
     }
 
     deshabilitarCartas() {
-        this.primera_carta.dataset.estado = "revelada";
-        this.segunda_carta.dataset.estado = "revelada";
+        this.#primera_carta.dataset.estado = "revelada";
+        this.#segunda_carta.dataset.estado = "revelada";
 
-        this.comprobarJuego();
-        this.reiniciarAtributos();
+        this.#comprobarJuego();
+        this.#reiniciarAtributos();
     }
 
-    cubrirCartas() {
+    #cubrirCartas() {
         var objeto = this;
-        this.tablero_bloqueado = true;
+        this.#tablero_bloqueado = true;
 
         setTimeout(function() {
-            objeto.primera_carta.removeAttribute("data-estado");
-            objeto.segunda_carta.removeAttribute("data-estado");
-            objeto.reiniciarAtributos();
-        }, 800);
+            objeto.#primera_carta.removeAttribute("data-estado");
+            objeto.#segunda_carta.removeAttribute("data-estado");
+            objeto.#reiniciarAtributos();
+        }, 500);
     }
 
-    comprobarPareja() {
-        var img1 = this.primera_carta.children[1].getAttribute("src");
-        var img2 = this.segunda_carta.children[1].getAttribute("src");
+    #comprobarPareja() {
+        var img1 = this.#primera_carta.children[1].getAttribute("src");
+        var img2 = this.#segunda_carta.children[1].getAttribute("src");
 
         if (img1 === img2) {
             this.deshabilitarCartas();
         } else {
-            this.cubrirCartas();
+            this.#cubrirCartas();
         }
     }
 
     voltearCarta(carta) {
-        if (this.tablero_bloqueado) {
+        if (this.#tablero_bloqueado) {
             return;
         }
 
@@ -88,18 +91,18 @@ class Memoria {
 
         carta.dataset.estado = "volteada";
 
-        if (this.primera_carta === null) {
-            this.primera_carta = carta;
+        if (this.#primera_carta === null) {
+            this.#primera_carta = carta;
             return;
         }
 
-        this.segunda_carta = carta;
-        this.tablero_bloqueado = true;
+        this.#segunda_carta = carta;
+        this.#tablero_bloqueado = true;
 
         var objeto = this;
         setTimeout(function() {
-            objeto.comprobarPareja();
-        }, 300);
+            objeto.#comprobarPareja();
+        }, 100);
     }
 }
 

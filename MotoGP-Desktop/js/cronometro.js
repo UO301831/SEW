@@ -1,21 +1,17 @@
 class Cronometro {
 
     constructor() {
-        this.tiempo = 0;      // tiempo en milisegundos
-        this.inicio = null;    // momento en que se inicia
-        this.corriendo = null; // identificador del setInterval
+        this.tiempo = 0;      
+        this.inicio = null;    
+        this.corriendo = null; 
     }
 
     arrancar() {
             try {
-                // Si Temporal está disponible
                 this.inicio = Temporal.Now.instant();
             } catch (e) {
-                // Fallback a Date si Temporal no existe
                 this.inicio = new Date();
             }
-
-            // Llama a actualizar cada décima de segundo (100 ms)
             this.corriendo = setInterval(this.actualizar.bind(this), 100);
     }
 
