@@ -8,11 +8,13 @@ header {
   flex-wrap: wrap;                /* Permite que se adapte en pantallas pequeñas */
   gap: 1rem;                      /* Separación entre h1 y nav */
 }
+/**Especificidad: (0,0,1) */
 
 header h1 {
   flex: 1 1 auto;   /* Puede crecer y encogerse, ocupa espacio flexible */
   margin: 0;        /* Quitar márgenes innecesarios */
 }
+/**Especificidad: (0,0,2) */
 
 .galeria {
   display: flex;
@@ -20,11 +22,14 @@ header h1 {
   gap: 1rem;                    /* Espaciado entre imágenes */
   justify-content: center;      /* Centrar las imágenes */
 }
+/**Especificidad: (0,1,0) */
+
 .galeria img {
   flex: 1 1 auto;               /* Las imágenes crecen y se encogen según el espacio */
   max-width: 100%;              /* No exceder el ancho del contenedor */
   height: auto;                 /* Mantener proporción */
 }
+/**Especificidad: (0,1,1) */
 
 
 
@@ -37,7 +42,7 @@ header h1 {
     flex-direction: column;   /* Apila h1 y nav en columna */
     align-items: flex-start;  /* Alinear a la izquierda */
   }
-
+/**Especificidad: (0,0,2) */
 
   header nav{
     flex-direction: column;   /* Enlaces uno debajo de otro */
@@ -45,21 +50,31 @@ header h1 {
     gap: 0.5rem;
 
   }
+/**Especificidad: (0,0,2) */
 
   nav a {
     padding: 0.5rem;
     text-align: center;
   }
+/**Especificidad: (0,0,2) */
 
   #migas{
     display: none
   }
+/**Especificidad: (1,0,0) */
 
   .galeria {
     flex-direction: column;    /* Apilar imágenes en columna */
     align-items: center;       /* Centrar imágenes */
   }
+/**Especificidad: (0,1,0) */
 
+  /* Regla para adaptabilidad del carrusel en móviles (tarea 9) */
+  article h2 + img {
+    width: 100%;               /* Ocupar todo el ancho de la pantalla */
+    height: auto;               /* Mantener proporción */
+  }
+/**Especificidad: (0,0,2) */
 
 }
 
@@ -68,10 +83,11 @@ nav {
   flex-wrap: wrap;              /* Si no caben los enlaces, se van a otra línea */
   gap: 0.5rem 1rem;             /* Espaciado horizontal y vertical entre enlaces */
 }
+/**Especificidad: (0,0,1) */
 
 nav a {
   text-decoration: none;
   padding: 0.2rem 1.6rem;
   flex: 0 0 auto;   /* Los enlaces mantienen su tamaño natural */
 }
-
+/**Especificidad: (0,0,2) */

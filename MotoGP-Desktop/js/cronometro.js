@@ -4,6 +4,7 @@ class Cronometro {
         this.tiempo = 0;      
         this.inicio = null;    
         this.corriendo = null; 
+        this.#inicializarEventos();
     }
 
     arrancar() {
@@ -54,4 +55,22 @@ class Cronometro {
         this.tiempo = 0;
         this.mostrar();
     }
+    
+    #inicializarEventos(){
+        let root = document.querySelector("main");
+        let display = root ? root.querySelector("p") : null;
+
+        const botones = root ? root.querySelectorAll("button") : [];
+        const btnArrancar = botones[0] || null;
+        const btnParar     = botones[1] || null;
+        const btnReiniciar = botones[2] || null;
+
+        // registrar eventos (si existen)
+        if (btnArrancar)  btnArrancar.addEventListener("click", () => this.arrancar());
+        if (btnParar)     btnParar.addEventListener("click",  () => this.parar());
+        if (btnReiniciar) btnReiniciar.addEventListener("click", () => this.reiniciar());
+
+        this.mostrar();    
+    }
+
 }

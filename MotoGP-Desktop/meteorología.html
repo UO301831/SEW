@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="estilo/estilo.css" />
     <link rel="stylesheet" href="estilo/layout.css" />
     <link rel="icon" href="multimedia/iconoMotoGP.ico" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 
     <script src="js/ciudad.js"></script>
 </head>
@@ -33,7 +35,7 @@
     <section id="migas">
         <p>Estás en: <a href="index.html">Inicio</a> >> <strong>Meteorología</strong></p>
     </section>
-
+    
     <main>
         <h2>Información sobre la meteorología</h2>
 
@@ -41,19 +43,33 @@
             <h3>Información sobre la ciudad</h3>
         </section>
     </main>
-
+    <section id="meteoCarrera"></section>
+    <section id="meteoEntrenos"></section>
     <script>
         const ciudadCarrera = new Ciudad("Spielberg", "Austria", "austriaco");
+
         ciudadCarrera.initializeGeo(5400, "47°13′12″N, 14°45′54″E");
 
         const contenedor = document.getElementById("infoCiudad");
-        contenedor.innerHTML += `
-            <p><strong>Ciudad:</strong> ${ciudadCarrera.cityToString()}</p>
-            <p><strong>País:</strong> ${ciudadCarrera.countryToString()}</p>
-            ${ciudadCarrera.buildDemographicInfo()}
-        `;
+
+        const pCiudad = document.createElement("p");    
+        pCiudad.innerHTML = `<strong>Ciudad:</strong> ${ciudadCarrera.cityToString()}`;
+        contenedor.appendChild(pCiudad);
+
+        const pPais = document.createElement("p");
+        pPais.innerHTML = `<strong>País:</strong> ${ciudadCarrera.countryToString()}`;
+        contenedor.appendChild(pPais);
+
+        const secInfo = document.createElement("section");
+        secInfo.innerHTML = ciudadCarrera.buildDemographicInfo();
+        contenedor.appendChild(secInfo);
 
         ciudadCarrera.writeCoordinates();
+
+        ciudadCarrera.getMeteorologiaCarrera("2025-08-20");
+
+        ciudadCarrera.getMeteorologiaEntrenos(["2023-08-17", "2023-08-18", "2023-08-19"]);
+
     </script>
 </body>
 </html>
