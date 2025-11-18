@@ -12,16 +12,17 @@ class Ciudad {
         this.#puntoCentral = null;
         this.#cantidadPoblacion = null;
     }
+
     initializeGeo(cantidadPoblacion, puntoCentral) {
         this.#cantidadPoblacion = cantidadPoblacion;
-        // Parsear la string de coordenadas (ej. "47°13′12″N, 14°45′54″E") a un objeto {lat, lon}
         this.#puntoCentral = this.#parseCoordinates(puntoCentral);
     }
+
     // Método auxiliar para convertir coordenadas DMS a decimal
     #parseCoordinates(coordString) {
         const parts = coordString.split(', ');
-        const latDMS = parts[0].trim();  // "47°13′12″N"
-        const lonDMS = parts[1].trim();  // "14°45′54″E"
+        const latDMS = parts[0].trim();  
+        const lonDMS = parts[1].trim(); 
         const lat = this.#dmsToDecimal(latDMS);
         const lon = this.#dmsToDecimal(lonDMS);
         return { lat, lon };
@@ -63,7 +64,7 @@ class Ciudad {
         document.getElementById("infoCiudad").appendChild(p);
     }
 
-    // --- METEOROLOGÍA CARRERA ---
+    // Obtener datos meteorológicos del día de la carrera
     getMeteorologiaCarrera(fecha) {
         let url = "https://archive-api.open-meteo.com/v1/archive?latitude=" + this.#puntoCentral.lat
                 + "&longitude=" + this.#puntoCentral.lon
@@ -85,25 +86,27 @@ class Ciudad {
         });
     }
 
+    // Procesar JSON de la carrera
     procesarJSONCarrera(json) {
         let contenedor = $("<section></section>");
         contenedor.append("<h3>Meteorología Carrera</h3>");
 
-        // Datos diarios
+        // Datos diarios (sunrise, sunset)
         contenedor.append("<p>Salida del sol: " + json.daily.sunrise[0] + "</p>");
         contenedor.append("<p>Puesta del sol: " + json.daily.sunset[0] + "</p>");
 
-        // Datos horarios (ejemplo: primera hora)
+        // Datos horarios (ejemplo: primera hora del día)
         contenedor.append("<p>Temperatura (2m): " + json.hourly.temperature_2m[0] + " °C</p>");
         contenedor.append("<p>Sensación térmica: " + json.hourly.apparent_temperature[0] + " °C</p>");
         contenedor.append("<p>Lluvia: " + json.hourly.precipitation[0] + " mm</p>");
         contenedor.append("<p>Humedad relativa: " + json.hourly.relative_humidity_2m[0] + " %</p>");
         contenedor.append("<p>Viento: " + json.hourly.windspeed_10m[0] + " km/h dirección " + json.hourly.winddirection_10m[0] + "°</p>");
 
-        $("#meteo").append(contenedor);
+        // Añadir al contenedor correcto
+        $("#meteoCarrera").append(contenedor);
     }
 
-    // --- METEOROLOGÍA ENTRENOS ---
+    // Obtener datos meteorológicos de los días de entrenamientos
     getMeteorologiaEntrenos(fechas) {
         let start = fechas[0];
         let end = fechas[fechas.length - 1];
@@ -127,6 +130,7 @@ class Ciudad {
         });
     }
 
+    // Procesar JSON de entrenamientos y calcular medias
     procesarJSONEntrenos(json, fechas) {
         let contenedor = $("<section></section>");
         contenedor.append("<h3>Meteorología Entrenamientos</h3>");
@@ -145,6 +149,7 @@ class Ciudad {
             contenedor.append("<p>Día " + fecha + ": Temp media " + media(temp) + " °C, Lluvia media " + media(lluvia) + " mm, Viento medio " + media(viento) + " km/h, Humedad media " + media(humedad) + " %</p>");
         });
 
-        $("#meteo").append(contenedor);
+        // Añadir al contenedor correcto
+        $("#meteoEntrenos").append(contenedor);
     }
 }
