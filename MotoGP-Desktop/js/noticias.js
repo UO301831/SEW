@@ -24,7 +24,7 @@ class Noticias {
         contenedor.append("<h3>Noticias MotoGP</h3>");
 
         if (json.data && json.data.length > 0) {
-            json.data.slice(0, 5).forEach(noticia => {
+            json.data.forEach(noticia => {
                 let articulo = $("<article></article>");
                 articulo.append("<h4>" + noticia.title + "</h4>");
                 articulo.append("<p>" + (noticia.description || "Sin descripción") + "</p>");
