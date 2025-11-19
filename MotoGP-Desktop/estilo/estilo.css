@@ -38,29 +38,39 @@ a:hover{
   font-size: 105%;
 }
 
+#migas p a{
+  text-decoration: none;
+  color: #f0e6e4;
+}
+
 /**Pagina seleccionada*/
+/** Especificidad (0, 1, 1)*/
 a.active{
   color:#da2923;
   border-color:#050505;
   font-style: italic;
 }
 
+/** Especificidad (1,0,0)*/
 
 #migas {
   font-size: 110%;
 }
 
 
+/** Especificidad (1,0,2)*/
 #migas >  p > strong{
   color:#da2923;
   font-style: italic;
   font-size: 120%;
 }
 
+/** Especificidad (0,0,3)*/
 header > h1 > a{
   text-decoration-line: none;
 }
 
+/** Especificidad (0,0,2)*/
 video ,audio{
   width: 100%;
   height:auto;

@@ -91,18 +91,15 @@ class Ciudad {
         let contenedor = $("<section></section>");
         contenedor.append("<h3>Meteorología Carrera</h3>");
 
-        // Datos diarios (sunrise, sunset)
         contenedor.append("<p>Salida del sol: " + json.daily.sunrise[0] + "</p>");
         contenedor.append("<p>Puesta del sol: " + json.daily.sunset[0] + "</p>");
 
-        // Datos horarios (ejemplo: primera hora del día)
-        contenedor.append("<p>Temperatura (2m): " + json.hourly.temperature_2m[0] + " °C</p>");
-        contenedor.append("<p>Sensación térmica: " + json.hourly.apparent_temperature[0] + " °C</p>");
-        contenedor.append("<p>Lluvia: " + json.hourly.precipitation[0] + " mm</p>");
-        contenedor.append("<p>Humedad relativa: " + json.hourly.relative_humidity_2m[0] + " %</p>");
-        contenedor.append("<p>Viento: " + json.hourly.windspeed_10m[0] + " km/h dirección " + json.hourly.winddirection_10m[0] + "°</p>");
+        contenedor.append("<p>Temperatura (2m): " + json.hourly.temperature_2m[14] + " °C</p>");
+        contenedor.append("<p>Sensación térmica: " + json.hourly.apparent_temperature[14] + " °C</p>");
+        contenedor.append("<p>Lluvia: " + json.hourly.precipitation[14] + " mm</p>");
+        contenedor.append("<p>Humedad relativa: " + json.hourly.relative_humidity_2m[14] + " %</p>");
+        contenedor.append("<p>Viento: " + json.hourly.windspeed_10m[14] + " km/h dirección " + json.hourly.winddirection_10m[14] + "°</p>");
 
-        // Añadir al contenedor correcto
         $("#meteoCarrera").append(contenedor);
     }
 
@@ -130,7 +127,6 @@ class Ciudad {
         });
     }
 
-    // Procesar JSON de entrenamientos y calcular medias
     procesarJSONEntrenos(json, fechas) {
         let contenedor = $("<section></section>");
         contenedor.append("<h3>Meteorología Entrenamientos</h3>");
@@ -149,7 +145,6 @@ class Ciudad {
             contenedor.append("<p>Día " + fecha + ": Temp media " + media(temp) + " °C, Lluvia media " + media(lluvia) + " mm, Viento medio " + media(viento) + " km/h, Humedad media " + media(humedad) + " %</p>");
         });
 
-        // Añadir al contenedor correcto
         $("#meteoEntrenos").append(contenedor);
     }
 }

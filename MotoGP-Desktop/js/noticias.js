@@ -2,8 +2,8 @@
 class Noticias {
     constructor(busqueda) {
         this.busqueda = busqueda; // término de búsqueda (ej. "MotoGP")
-        this.url = "https://api.thenewsapi.com/v1/news/all"; // endpoint base
-        this.apiKey = "0yurf8SkyBm8HO3sglLVpzBq0jUTm36LuTX2ez5n"; // Sustituye por tu clave de TheNewsApi
+        this.url = "https://api.thenewsapi.com/v1/news/all";
+        this.apiKey = "0yurf8SkyBm8HO3sglLVpzBq0jUTm36LuTX2ez5n"; 
     }
     async buscar() {
         try {
@@ -24,7 +24,7 @@ class Noticias {
         contenedor.append("<h3>Noticias MotoGP</h3>");
 
         if (json.data && json.data.length > 0) {
-            json.data.slice(0, 5).forEach(noticia => {  // Limitar a 5 noticias
+            json.data.slice(0, 5).forEach(noticia => {
                 let articulo = $("<article></article>");
                 articulo.append("<h4>" + noticia.title + "</h4>");
                 articulo.append("<p>" + (noticia.description || "Sin descripción") + "</p>");

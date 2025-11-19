@@ -105,7 +105,7 @@ def xml_to_kml(xml_file, kml_file):
         f.write('<Style>\n')
         f.write('<LineStyle>\n')
         f.write('<color>ff0000ff</color>\n')  # Color rojo 
-        f.write('<width>2</width>\n')  # Grosor de la línea.
+        f.write('<width>3</width>\n')  # Grosor de la línea.
         f.write('</LineStyle>\n')
         f.write('</Style>\n')
         # Escribe el LineString para definir la línea.
