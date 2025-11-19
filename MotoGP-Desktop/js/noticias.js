@@ -1,7 +1,6 @@
-// Archivo: js/noticias.js
 class Noticias {
     constructor(busqueda) {
-        this.busqueda = busqueda; // término de búsqueda (ej. "MotoGP")
+        this.busqueda = busqueda;
         this.url = "https://api.thenewsapi.com/v1/news/all";
         this.apiKey = "0yurf8SkyBm8HO3sglLVpzBq0jUTm36LuTX2ez5n"; 
     }
