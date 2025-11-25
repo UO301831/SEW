@@ -3,7 +3,7 @@ class Circuito {
     this.input = document.querySelector('#inputInfoHTML');
     this.targetIds = ['#info-basica','#bibliografia','#fotografia','#multimedia','#vencedor','#clasificacion'];
     if (!this.comprobarApiFile()) {
-      this._mostrarMensajeError('El navegador no soporta File API');
+      alert('El navegador no soporta File API');
       return;
     }
     if (this.input) {
