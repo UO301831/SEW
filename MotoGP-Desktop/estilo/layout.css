@@ -91,3 +91,17 @@ nav a {
   flex: 0 0 auto;   /* Los enlaces mantienen su tamaño natural */
 }
 /**Especificidad: (0,0,2) */
+
+/**Especificidad: (1,0,0) */
+#map { box-sizing: border-box; }
+
+/**Especificidad: (1,0,0) */
+#mapSvgFallback { width: 100%; height: 400px; }
+
+/**Especificidad: (1,0,0) */
+#altimetria { margin-top: 1rem; }
+
+@media (max-width: 799px) {
+  /**Especificidad: (1,0,0) */
+  #map, #mapSvgFallback { height: 300px; }
+}
