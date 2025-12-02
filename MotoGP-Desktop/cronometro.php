@@ -5,7 +5,8 @@ class Cronometro{
     private $transcurrido;
 
     public function __construct(){
-        $this->tiempo = 0;
+        $this->inicio = 0;
+        $this->transcurrido = 0;
     }
 
     public function arrancar(){
@@ -102,10 +103,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="ayuda.html" title="Ayuda sobre la aplicación de MotoGP"> Ayuda </a>
             </nav>
         </header>
-
-        <nav>
-            <p>Inicio &gt; <a href="cronometro.php">Cronómetro</a></p>
-        </nav>
+<section id="migas">
+            <p>Estás en: <a href="index.html">Inicio</a> >> <a href="juegos.html">Juegos</a> >> <strong>Cronómetro en PHP</strong></p>
+        </section>
 
         <main>
             <h2>Prueba de la clase Cronómetro</h2>
