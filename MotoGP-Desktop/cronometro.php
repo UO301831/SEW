@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </section>
 
         <main>
-            <h2>Prueba de la clase Cronómetro</h2>
+            <h2>Cronómetro</h2>
             
 
             <form method="POST" action="cronometro.php">
