@@ -8,12 +8,16 @@ class Clasificacion {
     }
 
     public function consultar() {
-        if (file_exists($this->documento)) {
-            $this->xml = simplexml_load_file($this->documento);
-            
-            $this->xml->registerXPathNamespace('datos', 'http://www.uniovi.es');
+        $datos = file_get_contents($this->documento);
+        if ($datos === false) {
+            echo "<p>Error: No se pudo leer el archivo XML.</p>";
         } else {
-            echo "<p>Error: No se pudo cargar el archivo XML. Revisa la ruta.</p>";
+            try {
+                $this->xml = new SimpleXMLElement($datos);
+                $this->xml->registerXPathNamespace('datos', 'http://www.uniovi.es');
+            } catch (Exception $e) {
+                echo "<p>Error interpretando el XML: " . $e->getMessage() . "</p>";
+            }
         }
     }
 
