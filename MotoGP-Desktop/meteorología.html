@@ -55,11 +55,11 @@
         const contenedor = document.getElementById("infoCiudad");
 
         const pCiudad = document.createElement("p");
-        pCiudad.innerHTML = `<strong>Ciudad:</strong> ${ciudadCarrera.cityToString()}`;
+        pCiudad.innerHTML = `Ciudad: ${ciudadCarrera.cityToString()}`;
         contenedor.appendChild(pCiudad);
 
         const pPais = document.createElement("p");
-        pPais.innerHTML = `<strong>País:</strong> ${ciudadCarrera.countryToString()}`;
+        pPais.innerHTML = `País: ${ciudadCarrera.countryToString()}`;
         contenedor.appendChild(pPais);
 
         const secInfo = document.createElement("section");

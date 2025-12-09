@@ -91,8 +91,8 @@ class Ciudad {
         let contenedor = $("<section></section>");
         contenedor.append("<h3>Meteorología Carrera</h3>");
 
-        contenedor.append("<p>Salida del sol: " + json.daily.sunrise[0] + "</p>");
-        contenedor.append("<p>Puesta del sol: " + json.daily.sunset[0] + "</p>");
+        contenedor.append("<p>Salida del sol: " + this.#formatearHora(json.daily.sunrise[0]) + "</p>");
+        contenedor.append("<p>Puesta del sol: " + this.#formatearHora(json.daily.sunset[0]) + "</p>");
 
         contenedor.append("<p>Temperatura (2m): " + json.hourly.temperature_2m[14] + " °C</p>");
         contenedor.append("<p>Sensación térmica: " + json.hourly.apparent_temperature[14] + " °C</p>");
@@ -146,5 +146,12 @@ class Ciudad {
         });
 
         $("#meteoEntrenos").append(contenedor);
+    }
+
+    #formatearHora(fechaISO) {
+        const fecha = new Date(fechaISO);
+        const horas = fecha.getHours().toString().padStart(2, "0");
+        const minutos = fecha.getMinutes().toString().padStart(2, "0");
+        return `${horas}:${minutos} h`;
     }
 }
