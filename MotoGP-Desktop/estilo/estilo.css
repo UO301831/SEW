@@ -22,7 +22,7 @@ h1 a:visited{
 /* Especificidad: (0,0,1) */
 nav {
   background-color: #7c7c7c; 
-  margin: 3px;
+  margin: 0.2rem;
   margin-right: auto;
   padding: 0.5rem;
 }
@@ -35,7 +35,7 @@ nav a {
 /**Pasar por encima de un enlace*/
 a:hover{
   color:orange;
-  font-size: 105%;
+  font-size: 1.05rem;
 }
 
 #migas p a{
@@ -54,7 +54,7 @@ a.active{
 /** Especificidad (1,0,0)*/
 
 #migas {
-  font-size: 110%;
+  font-size: 1.1rem;
 }
 
 
@@ -62,7 +62,7 @@ a.active{
 #migas >  p > strong{
   color:#da2923;
   font-style: italic;
-  font-size: 120%;
+  font-size: 1.2rem;
 }
 
 /** Especificidad (0,0,3)*/
@@ -78,19 +78,26 @@ video{
 /** Especificidad (0,0,1)*/
 audio {
     width: 100%;
-    height: 40px;     
-    min-height: 32px;
+    height: 2.5rem;
+    min-height: 2rem; 
 }
 /**Especificidad (1,0,0)*/
 #map {
   width: 100%;
-  height: 600px;
+  height: 50vh;
+  box-sizing: border-box;
 }
 
 /**Especificidad (1,0,0)*/
 #mapSvgFallback {
   position: relative;
   width: 100%;
-  height: 600px;
+  height: 50vh;
   display: block;
+}
+
+#carrusel img {
+    width: 100%;
+    height: 40vh;  
+    object-fit: cover;
 }

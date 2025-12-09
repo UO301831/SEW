@@ -8,7 +8,7 @@ class Carrusel {
 
     getFotografias() {
         var flickrAPI = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-        
+
         $.getJSON(flickrAPI, {
             tags: this.busqueda,
             tagmode: "any",
@@ -16,6 +16,7 @@ class Carrusel {
         })
         .done((data) => {
             this.procesarJSONFotografias(data);
+
             if (this.fotos.length > 0) {
                 this.mostrarFotografias();
             } else {
@@ -29,27 +30,21 @@ class Carrusel {
 
     procesarJSONFotografias(json) {
         this.fotos = [];
+
         $.each(json.items, (i, item) => {
             this.fotos.push(item.media.m.replace("_m.jpg", "_z.jpg"));
-            if (i === this.maximo) {
-                return false;
-            }
+            if (i === this.maximo) return false;
         });
     }
 
     mostrarFotografias() {
-        let contenedor = $("<article></article>");
-        contenedor.append(`<h2>Imágenes del circuito de ${this.busqueda}</h2>`);
-        let img = $("<img>").attr("src", this.fotos[this.actual]);
-        contenedor.append(img);
-        $("main").append(contenedor);
-
+        $("#imagenCarrusel").attr("src", this.fotos[this.actual]);
         setInterval(this.cambiarFotografia.bind(this), 3000);
     }
 
     cambiarFotografia() {
         if (this.fotos.length === 0) return;
         this.actual = (this.actual + 1) % this.fotos.length;
-        $("article img").attr("src", this.fotos[this.actual]);
+        $("#imagenCarrusel").attr("src", this.fotos[this.actual]);
     }
 }

@@ -96,12 +96,14 @@ nav a {
 #map { box-sizing: border-box; }
 
 /**Especificidad: (1,0,0) */
-#mapSvgFallback { width: 100%; height: 400px; }
-
+#mapSvgFallback {
+  width: 100%;
+  height: 30vh;
+}
 /**Especificidad: (1,0,0) */
 #altimetria { margin-top: 1rem; }
 
 @media (max-width: 799px) {
   /**Especificidad: (1,0,0) */
-  #map, #mapSvgFallback { height: 300px; }
+  #map, #mapSvgFallback { height: 30vh; }
 }
