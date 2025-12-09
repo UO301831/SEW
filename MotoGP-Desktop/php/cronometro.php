@@ -84,27 +84,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <meta name ="keywords" content ="" />
         <meta name ="viewport" content ="width=device-width, initial-scale=1.0" />
 
-        <link rel="stylesheet" type="text/css" href="estilo/estilo.css"/>
-        <link rel="stylesheet" type="text/css" href="estilo/layout.css"/>
-        <link rel="icon" href="multimedia/iconoMotoGP.ico"/>
+        <link rel="stylesheet" type="text/css" href="../estilo/estilo.css"/>
+        <link rel="stylesheet" type="text/css" href="../estilo/layout.css"/>
+        <link rel="icon" href="../multimedia/iconoMotoGP.ico"/>
 
         </head>
 
     <body>
         <header>
-            <h1><a href="index.html">MotoGP Desktop</a></h1>
+            <h1><a href="../index.html">MotoGP Desktop</a></h1>
             <nav>
-                <a href="index.html" title="Inicio de la aplicación MotoGP Desktop"> Inicio </a>
-                <a href="piloto.html" title="Información sobre el piloto"> Piloto </a>
-                <a href="meteorología.html" title="Información sobre la meteorología"> Meteorología </a>
-                <a href="juegos.html" title="Juegos sobre MotoGP"> Juegos </a>
+                <a href="../index.html" title="Inicio de la aplicación MotoGP Desktop"> Inicio </a>
+                <a href="../piloto.html" title="Información sobre el piloto"> Piloto </a>
+                <a href="../meteorología.html" title="Información sobre la meteorología"> Meteorología </a>
+                <a href="../juegos.html" title="Juegos sobre MotoGP"> Juegos </a>
                 <a href="clasificaciones.php" title="Clasificaciones de MotoGP"> Clasificaciones </a>
-                <a href="circuito.html" title="Información y estadísticas de el circuito asignado"> Circuito </a>
-                <a href="ayuda.html" title="Ayuda sobre la aplicación de MotoGP"> Ayuda </a>
+                <a href="../circuito.html" title="Información y estadísticas de el circuito asignado"> Circuito </a>
+                <a href="../ayuda.html" title="Ayuda sobre la aplicación de MotoGP"> Ayuda </a>
             </nav>
         </header>
 <section id="migas">
-            <p>Estás en: <a href="index.html">Inicio</a> >> <a href="juegos.html">Juegos</a> >> <strong>Cronómetro en PHP</strong></p>
+            <p>Estás en: <a href="../index.html">Inicio</a> >> <a href="../juegos.html">Juegos</a> >> <strong>Cronómetro en PHP</strong></p>
         </section>
 
         <main>

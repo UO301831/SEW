@@ -3,10 +3,6 @@ CREATE DATABASE IF NOT EXISTS UO301831_DB;
 
 USE UO301831_DB;
 
---------------------------------------------------------
--- TABLAS NORMALIZADAS (3FN)
---------------------------------------------------------
-
 DROP TABLE IF EXISTS dispositivo;
 CREATE TABLE dispositivo (
     id_dispositivo INT AUTO_INCREMENT PRIMARY KEY,
