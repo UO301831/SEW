@@ -1,0 +1,93 @@
+<!DOCTYPE HTML> 
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MotoGP - Circuito</title>
+    <meta name="author" content="Alejandro Requena" />
+    <meta name="description" content="Información relevante sobre los circuitos de MotoGP" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
+    <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
+    <link rel="icon" href="multimedia/iconoMotoGP.ico" />
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="index.html">MotoGP Desktop</a></h1>
+      <nav>
+        <a href="index.html" title="Inicio">Inicio</a>
+        <a href="piloto.html" title="Piloto">Piloto</a>
+        <a href="meteorología.html" title="Meteorología">Meteorología</a>
+        <a href="juegos.html" title="Juegos">Juegos</a>
+        <a href="php/clasificaciones.php" title="Clasificaciones">Clasificaciones</a>
+        <a class="active" href="circuito.html" title="Circuito">Circuito</a>
+        <a href="ayuda.html" title="Ayuda">Ayuda</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="controls">
+        <h2>Archivos del circuito</h2>
+
+        <label>InfoCircuito (HTML):
+          <input id="inputInfoHTML" type="file" accept=".html" />
+        </label>
+        <br />
+
+        <label>Altimetría (SVG):
+          <input id="inputSVG" type="file" accept=".svg" />
+        </label>
+        <br />
+
+        <label>KML del circuito:
+          <input id="inputKML" type="file" accept=".kml,.xml" />
+        </label>
+
+      </section>
+
+      <section id="info-basica">
+        <h2>Información Básica</h2>
+      </section>
+
+      <section id="bibliografia">
+        <h2>Bibliografía</h2>
+      </section>
+
+      <section id="fotografia">
+        <h2>Fotografía</h2>
+        <div class="galeria"></div>
+      </section>
+
+      <section id="multimedia">
+        <h2>Multimedia</h2>
+      </section>
+
+      <section id="vencedor">
+        <h2>Vencedor</h2>
+      </section>
+
+      <section id="clasificacion">
+        <h2>Clasificación</h2>
+      </section>
+
+      <section id="altimetria">
+        <h2>Altimetría</h2>
+      </section>
+
+      <section id="mapSection">
+        <h2>Mapa del circuito</h2>
+
+        <div id="map"></div>
+
+        <svg id="mapSvgFallback" xmlns="http://www.w3.org/2000/svg"></svg>
+      </section>
+    </main>
+
+    <script src="js/circuito.js"></script>
+
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfCoYrqmRB_kkNNoC9Xa-ryqiw0bKzgm8&callback=iniciarMapa"></script>
+
+  </body>
+</html>
