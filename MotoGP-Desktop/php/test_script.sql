@@ -3,6 +3,17 @@ CREATE DATABASE IF NOT EXISTS UO301831_DB;
 
 USE UO301831_DB;
 
+DROP TABLE IF EXISTS respuestas;
+DROP TABLE IF EXISTS consideration;
+DROP TABLE IF EXISTS test_info;
+DROP TABLE IF EXISTS user_info;
+DROP TABLE IF EXISTS dispositivo;
+DROP TABLE IF EXISTS profesion;
+DROP TABLE IF EXISTS genero;
+
+
+
+
 DROP TABLE IF EXISTS dispositivo;
 CREATE TABLE dispositivo (
     id_dispositivo INT AUTO_INCREMENT PRIMARY KEY,
@@ -28,9 +39,8 @@ CREATE TABLE genero (
 
 INSERT INTO genero (nombre) VALUES ('M'), ('F'), ('Otro');
 
---------------------------------------------------------
 -- TABLA PRINCIPAL: USUARIO
---------------------------------------------------------
+
 
 DROP TABLE IF EXISTS user_info;
 CREATE TABLE user_info (
@@ -44,9 +54,8 @@ CREATE TABLE user_info (
     FOREIGN KEY (id_genero) REFERENCES genero(id_genero)
 );
 
---------------------------------------------------------
 -- TABLA PRINCIPAL: RESULTADOS DEL TEST
---------------------------------------------------------
+
 
 DROP TABLE IF EXISTS test_info;
 CREATE TABLE test_info (
@@ -63,9 +72,9 @@ CREATE TABLE test_info (
     FOREIGN KEY (id_dispositivo) REFERENCES dispositivo(id_dispositivo)
 );
 
---------------------------------------------------------
+
 -- TABLA PRINCIPAL: OBSERVACIONES DEL FACILITADOR
---------------------------------------------------------
+
 
 DROP TABLE IF EXISTS consideration;
 CREATE TABLE consideration (
@@ -74,4 +83,13 @@ CREATE TABLE consideration (
 
     PRIMARY KEY (idUsuario),
     FOREIGN KEY (idUsuario) REFERENCES user_info(id)
+);
+
+DROP TABLE IF EXISTS respuestas;
+CREATE TABLE IF NOT EXISTS respuestas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    idUsuario VARCHAR(12) NOT NULL,
+    pregunta_num TINYINT NOT NULL,
+    respuesta TEXT NOT NULL,
+    FOREIGN KEY (idUsuario) REFERENCES user_info(id) ON DELETE CASCADE
 );

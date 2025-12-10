@@ -103,3 +103,41 @@ audio {
     height: 40vh;  
     object-fit: cover;
 }
+
+/* ====== ORGANIZACIÓN VERTICAL ====== */
+fieldset {
+    margin-bottom: 2rem;
+    padding: 1rem;
+}
+
+.fila {
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.fila label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+}
+
+.fila input,
+.fila select,
+.fila textarea {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+
+/** Especificidad (0,0,1)*/
+button {
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+}
+
+/* Clases para controlar la visibilidad según el estado de la prueba */
+        .hidden { display: none; }
+        .bloqueado { pointer-events: none; opacity: 0.7; background-color: #f0f0f0; }
+        .fila { margin-bottom: 15px; }
+        label { display: inline-block; width: 300px; font-weight: bold; }
