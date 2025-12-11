@@ -8,20 +8,14 @@ class Configuracion {
         $this->conn = $conn;
     }
 
-    /* ----------------------------------------------------
-       REINICIAR BASE DE DATOS
-       ---------------------------------------------------- */
     public function reiniciarBD() {
-        // Orden importante para respetar Foreign Keys al borrar
         $tablas = ["respuestas", "consideration", "test_info", "user_info", 
                    "profesion", "genero", "dispositivo"];
 
-        // Desactivar check de llaves foráneas temporalmente para evitar errores al vaciar
         $this->conn->query("SET FOREIGN_KEY_CHECKS = 0");
 
         foreach ($tablas as $t) {
             $this->conn->query("DELETE FROM $t");
-            // Reiniciar el auto_increment para que los IDs empiecen de 1 de nuevo
             $this->conn->query("ALTER TABLE $t AUTO_INCREMENT = 1");
         }
 
@@ -29,10 +23,6 @@ class Configuracion {
 
         return "Base de datos reiniciada correctamente.";
     }
-
-    /* ----------------------------------------------------
-       ELIMINAR BASE DE DATOS COMPLETA
-       ---------------------------------------------------- */
     public function eliminarBD() {
         $sql = "DROP DATABASE IF EXISTS {$this->dbName}";
         
@@ -41,13 +31,8 @@ class Configuracion {
         }
         return "Error al eliminar la base de datos: " . $this->conn->error;
     }
-
-    /* ----------------------------------------------------
-       EXPORTAR A CSV (Optimizado para Excel)
-       ---------------------------------------------------- */
     public function exportarCSV() {
         $filename = "export_usabilidad_" . date("Ymd_His") . ".csv";
-        // Asegurarse de que la ruta existe, si no, usar carpeta temporal o actual
         if (!file_exists("../export")) {
             mkdir("../export", 0777, true);
         }
@@ -55,13 +40,10 @@ class Configuracion {
 
         $file = fopen($filepath, "w");
 
-        // 1. AÑADIR BOM PARA UTF-8 (Para que Excel lea bien tildes y ñ)
         fputs($file, "\xEF\xBB\xBF");
 
-        // 2. DEFINIR SEPARADOR (Punto y coma es mejor para Excel en español)
         $sep = ";";
 
-        // Encabezados
         fputcsv($file, [
             "Usuario",
             "Profesión",
@@ -76,7 +58,6 @@ class Configuracion {
             "Valoración"
         ], $sep);
 
-        // Tu consulta SQL original (Es correcta para los datos que necesitas)
         $sql = "
             SELECT 
                 u.id, 
@@ -100,7 +81,6 @@ class Configuracion {
         $resultado = $this->conn->query($sql);
 
         while ($fila = $resultado->fetch_assoc()) {
-            // Limpiar saltos de línea en comentarios para no romper el CSV
             if(isset($fila['comentarios'])) $fila['comentarios'] = str_replace(["\r", "\n"], " ", $fila['comentarios']);
             if(isset($fila['propuestas'])) $fila['propuestas'] = str_replace(["\r", "\n"], " ", $fila['propuestas']);
 

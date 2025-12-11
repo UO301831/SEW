@@ -58,7 +58,7 @@ header h1 {
   }
 /**Especificidad: (0,0,2) */
 
-  #migas{
+  section{
     display: none
   }
 /**Especificidad: (1,0,0) */
@@ -93,7 +93,7 @@ nav a {
 /**Especificidad: (0,0,2) */
 
 /**Especificidad: (1,0,0) */
-#map { box-sizing: border-box; }
+svg { box-sizing: border-box; }
 
 /**Especificidad: (1,0,0) */
 #mapSvgFallback {

@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="../ayuda.html" title="Ayuda sobre la aplicación de MotoGP"> Ayuda </a>
             </nav>
         </header>
-<section id="migas">
+        <section>
             <p>Estás en: <a href="../index.html">Inicio</a> >> <a href="../juegos.html">Juegos</a> >> <strong>Cronómetro en PHP</strong></p>
         </section>
 

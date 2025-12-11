@@ -7,7 +7,6 @@ header('Content-Type: application/json; charset=utf-8');
 function json_err($m){ echo json_encode(['status'=>'error','message'=>$m]); exit; }
 function json_ok($m){ echo json_encode(['status'=>'ok','message'=>$m]); exit; }
 
-// 1. RECOGER DATOS BÁSICOS
 $idUsuario = $_POST['idUsuario'] ?? '';
 $profesion = $_POST['profesion'] ?? 'Desconocida';
 $edad      = $_POST['edad'] ?? 0;
@@ -16,11 +15,9 @@ $pericia   = $_POST['pericia'] ?? 0;
 $dispositivo = $_POST['dispositivo'] ?? '';
 $valoracion  = isset($_POST['valoracion']) ? intval($_POST['valoracion']) : null;
 
-// VALIDACIÓN DE DATOS OBLIGATORIOS
 if (!$idUsuario || !$dispositivo) json_err('Faltan datos obligatorios (Usuario o Dispositivo)');
 
-// VALIDACIÓN DE LAS 10 PREGUNTAS
-// Si entra en el if, se detiene el script. Si pasa el bucle, es que TODO está contestado.
+
 for ($i = 1; $i <= 10; $i++) {
     $campo = 'q' . $i;
     if (!isset($_POST[$campo]) || trim($_POST[$campo]) === '') {
@@ -28,7 +25,6 @@ for ($i = 1; $i <= 10; $i++) {
     }
 }
 
-// SI HA LLEGADO AQUÍ, SIGNIFICA QUE LA PRUEBA ESTÁ COMPLETA
 $completado = 1; 
 
 // CÁLCULO DE TIEMPO
@@ -49,12 +45,7 @@ $comentarios_observador = $_POST['comentarios_observador'] ?? null;
 
 $conn->begin_transaction();
 
-try {
-    // ---------------------------------------------------------
-    // PASO A: GESTIONAR TABLAS AUXILIARES
-    // ---------------------------------------------------------
-
-    // A.1 DISPOSITIVO
+try { 
     $stmt = $conn->prepare("SELECT id_dispositivo FROM dispositivo WHERE nombre = ?");
     $stmt->bind_param('s', $dispositivo);
     $stmt->execute();
@@ -70,7 +61,6 @@ try {
     }
     $stmt->close();
 
-    // A.2 PROFESION
     $stmt = $conn->prepare("SELECT id_profesion FROM profesion WHERE nombre = ?");
     $stmt->bind_param('s', $profesion);
     $stmt->execute();
@@ -86,7 +76,6 @@ try {
     }
     $stmt->close();
 
-    // A.3 GENERO
     $stmt = $conn->prepare("SELECT id_genero FROM genero WHERE nombre = ?");
     $stmt->bind_param('s', $genero);
     $stmt->execute();

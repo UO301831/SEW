@@ -79,11 +79,6 @@ $clasificacion = new Clasificacion();
 $clasificacion->consultar();
 ?>
 
-
-
-
-
-
 <!DOCTYPE HTML>
 
 <html lang="es">
@@ -118,7 +113,7 @@ $clasificacion->consultar();
         </nav>
     </header>
     
-<section id = "migas"> <p>Estás en: <a href="../index.html">Inicio</a> >> <strong> Clasificaciones </strong></p> </section>
+<section> <p>Estás en: <a href="../index.html">Inicio</a> >> <strong> Clasificaciones </strong></p> </section>
     <h2>Clasificaciones MotoGP</h2>
     <?php
         $clasificacion->obtenerGanador();
