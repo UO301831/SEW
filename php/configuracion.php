@@ -1,95 +1,195 @@
 <?php
+require_once "config.php";
+
 class Configuracion {
+    
+    protected $conn;
 
-    private $conn;
-    private $dbName = "UO301831_DB"; 
-
-    public function __construct($conn) {
-        $this->conn = $conn;
+    public function __construct() {
+        $this->conn = new mysqli(DB_HOST, DB_USER, DB_PASS);
+        if ($this->conn->connect_error) {
+            die("Error de conexión al servidor: " . $this->conn->connect_error);
+        }
+        $this->conn->set_charset("utf8mb4");
     }
 
-    public function reiniciarBD() {
-        $tablas = ["respuestas", "consideration", "test_info", "user_info", 
-                   "profesion", "genero", "dispositivo"];
+    public function crearBaseDatos() {
+        $sql = "CREATE DATABASE IF NOT EXISTS " . DB_NAME;
+        if ($this->conn->query($sql) === TRUE) {
+            $this->conn->select_db(DB_NAME);
+            return $this->crearTablas();
+        } else {
+            return "Error creando la BD: " . $this->conn->error;
+        }
+    }
+
+    private function crearTablas() {
+        // Arrays de queries copiados y adaptados de tu script SQL
+        $queries = [];
+
+        // 1. Tablas independientes (Lookups)
+        $queries[] = "CREATE TABLE IF NOT EXISTS Genero (
+            id_genero INT AUTO_INCREMENT PRIMARY KEY,
+            nombre VARCHAR(50) NOT NULL UNIQUE
+        )";
+
+        $queries[] = "CREATE TABLE IF NOT EXISTS Profesion (
+            id_profesion INT AUTO_INCREMENT PRIMARY KEY,
+            nombre VARCHAR(100) NOT NULL UNIQUE
+        )";
+
+        $queries[] = "CREATE TABLE IF NOT EXISTS Dispositivo (
+            id_dispositivo INT AUTO_INCREMENT PRIMARY KEY,
+            nombre VARCHAR(50) NOT NULL UNIQUE
+        )";
+
+        // 2. Tabla Usuarios
+        $queries[] = "CREATE TABLE IF NOT EXISTS Usuarios (
+            id_usuario INT AUTO_INCREMENT PRIMARY KEY, 
+            edad INT NOT NULL,
+            pericia INT NOT NULL CHECK (pericia BETWEEN 0 AND 10),
+            id_profesion INT NOT NULL,
+            id_genero INT NOT NULL,
+            FOREIGN KEY (id_profesion) REFERENCES Profesion(id_profesion),
+            FOREIGN KEY (id_genero) REFERENCES Genero(id_genero)
+        )";
+
+        // 3. Resultados Test
+        $queries[] = "CREATE TABLE IF NOT EXISTS Resultados_Test (
+            id_usuario INT,
+            id_dispositivo INT,
+            tiempo_segundos INT NOT NULL,
+            completado BOOLEAN NOT NULL DEFAULT FALSE,
+            comentarios_usuario TEXT,
+            propuestas_usuario TEXT,
+            valoracion_usuario INT CHECK (valoracion_usuario BETWEEN 0 AND 10),
+            PRIMARY KEY (id_usuario, id_dispositivo),
+            FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
+            FOREIGN KEY (id_dispositivo) REFERENCES Dispositivo(id_dispositivo)
+        )";
+
+        // 4. Observaciones Facilitador
+        $queries[] = "CREATE TABLE IF NOT EXISTS Observaciones_Facilitador (
+            id_usuario INT,
+            id_dispositivo INT, -- Opcional según tu script, pero bueno para integridad
+            comentarios_facilitador TEXT NOT NULL,
+            PRIMARY KEY (id_usuario),
+            FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
+        )";
+
+        // 5. Respuestas Cuestionario
+        $queries[] = "CREATE TABLE IF NOT EXISTS Respuestas_Cuestionario (
+            id_respuesta INT AUTO_INCREMENT PRIMARY KEY,
+            id_usuario INT NOT NULL,
+            id_dispositivo INT NOT NULL,
+            numero_pregunta INT NOT NULL,
+            texto_respuesta TEXT NOT NULL,
+            FOREIGN KEY (id_usuario, id_dispositivo) REFERENCES Resultados_Test(id_usuario, id_dispositivo)
+        )";
+
+        // Inserts básicos
+        $inserts = [
+            "INSERT IGNORE INTO Dispositivo (nombre) VALUES ('Ordenador'), ('Tableta'), ('Teléfono')",
+            "INSERT IGNORE INTO Genero (nombre) VALUES ('Hombre'), ('Mujer'), ('Otro')"
+        ];
+
+        // Ejecutar creación de tablas
+        foreach ($queries as $sql) {
+            if (!$this->conn->query($sql)) return "Error creando tabla: " . $this->conn->error;
+        }
+
+        // Ejecutar inserts iniciales
+        foreach ($inserts as $sql) {
+            $this->conn->query($sql);
+        }
+
+        return "Base de datos configurada correctamente";
+    }
+
+    public function eliminarBaseDatos() {
+        $sql = "DROP DATABASE IF EXISTS " . DB_NAME;
+        if ($this->conn->query($sql)) {
+            return "Base de datos eliminada correctamente.";
+        } else {
+            return "Error eliminando BD: " . $this->conn->error;
+        }
+    }
+
+    public function reiniciarDatos() {
+        if (!$this->conn->select_db(DB_NAME)) return "Error: BD no existe.";
 
         $this->conn->query("SET FOREIGN_KEY_CHECKS = 0");
-
-        foreach ($tablas as $t) {
-            $this->conn->query("DELETE FROM $t");
-            $this->conn->query("ALTER TABLE $t AUTO_INCREMENT = 1");
+        
+        // Lista de tablas actualizada
+        $tablas = ["Respuestas_Cuestionario", "Observaciones_Facilitador", "Resultados_Test", "Usuarios", "Profesion", "Genero", "Dispositivo"];
+        
+        foreach ($tablas as $tabla) {
+            $this->conn->query("DELETE FROM $tabla");
+            $this->conn->query("ALTER TABLE $tabla AUTO_INCREMENT = 1");
         }
+
+        // Reinsertar valores por defecto necesarios
+        $this->conn->query("INSERT IGNORE INTO Dispositivo (nombre) VALUES ('Ordenador'), ('Tableta'), ('Teléfono')");
+        $this->conn->query("INSERT IGNORE INTO Genero (nombre) VALUES ('Hombre'), ('Mujer'), ('Otro')");
 
         $this->conn->query("SET FOREIGN_KEY_CHECKS = 1");
+        return "Datos reiniciados. Tablas vacías.";
+    }
 
-        return "Base de datos reiniciada correctamente.";
-    }
-    public function eliminarBD() {
-        $sql = "DROP DATABASE IF EXISTS {$this->dbName}";
-        
-        if ($this->conn->query($sql) === TRUE) {
-            return "Base de datos eliminada correctamente.";
-        }
-        return "Error al eliminar la base de datos: " . $this->conn->error;
-    }
     public function exportarCSV() {
-        $filename = "export_usabilidad_" . date("Ymd_His") . ".csv";
-        if (!file_exists("../export")) {
-            mkdir("../export", 0777, true);
-        }
-        $filepath = "../export/" . $filename;
+        if (!$this->conn->select_db(DB_NAME)) return "Error: BD no seleccionada.";
 
+        $filename = "export_motogp_" . date("Ymd_His") . ".csv";
+        $dir = "../export";
+        if (!file_exists($dir)) mkdir($dir, 0777, true);
+        
+        $filepath = $dir . "/" . $filename;
         $file = fopen($filepath, "w");
-
         fputs($file, "\xEF\xBB\xBF");
-
         $sep = ";";
 
         fputcsv($file, [
-            "Usuario",
-            "Profesión",
-            "Edad",
-            "Género",
-            "Pericia",
-            "Dispositivo",
-            "Tiempo (s)",
-            "Completado (1=Si, 0=No)",
-            "Comentarios",
-            "Propuestas",
-            "Valoración"
+            "ID Usuario", "Edad", "Género", "Profesión", "Pericia", 
+            "Dispositivo", "Tiempo (s)", "Completado", 
+            "Comentarios Usuario", "Propuestas", "Valoración", "Obs. Facilitador"
         ], $sep);
 
-        $sql = "
-            SELECT 
-                u.id, 
-                COALESCE(p.nombre, 'Sin definir') AS profesion, 
+        $sql = "SELECT 
+                u.id_usuario, 
                 u.edad, 
-                COALESCE(g.nombre, 'Sin definir') AS genero, 
+                g.nombre as genero,
+                p.nombre as profesion,
                 u.pericia,
-                COALESCE(d.nombre, 'Sin definir') AS dispositivo, 
-                t.tiempo_tardado, 
-                COALESCE(t.completado, 0) as completado, 
-                t.comentarios, 
-                t.propuestas, 
-                t.valoracion
-            FROM user_info u
-            LEFT JOIN profesion p ON u.id_profesion = p.id_profesion
-            LEFT JOIN genero g ON u.id_genero = g.id_genero
-            LEFT JOIN test_info t ON u.id = t.idUsuario
-            LEFT JOIN dispositivo d ON t.id_dispositivo = d.id_dispositivo
-        ";
+                d.nombre as dispositivo,
+                r.tiempo_segundos,
+                r.completado,
+                r.comentarios_usuario,
+                r.propuestas_usuario,
+                r.valoracion_usuario,
+                o.comentarios_facilitador
+            FROM Usuarios u
+            LEFT JOIN Genero g ON u.id_genero = g.id_genero
+            LEFT JOIN Profesion p ON u.id_profesion = p.id_profesion
+            LEFT JOIN Resultados_Test r ON u.id_usuario = r.id_usuario
+            LEFT JOIN Dispositivo d ON r.id_dispositivo = d.id_dispositivo
+            LEFT JOIN Observaciones_Facilitador o ON u.id_usuario = o.id_usuario";
 
         $resultado = $this->conn->query($sql);
 
-        while ($fila = $resultado->fetch_assoc()) {
-            if(isset($fila['comentarios'])) $fila['comentarios'] = str_replace(["\r", "\n"], " ", $fila['comentarios']);
-            if(isset($fila['propuestas'])) $fila['propuestas'] = str_replace(["\r", "\n"], " ", $fila['propuestas']);
-
-            fputcsv($file, $fila, $sep);
+        if ($resultado) {
+            while ($fila = $resultado->fetch_assoc()) {
+                foreach ($fila as $key => $val) {
+                    $fila[$key] = str_replace(["\r", "\n"], " ", $val);
+                }
+                fputcsv($file, $fila, $sep);
+            }
+        } else {
+            fclose($file);
+            return "Error SQL: " . $this->conn->error;
         }
 
         fclose($file);
-
-        return "Datos exportados correctamente en: $filename";
+        return "Exportación completada: $filename";
     }
 }
 ?>

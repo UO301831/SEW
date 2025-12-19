@@ -54,9 +54,6 @@ def toStr(duracion):
     return f"{minutos}:{segundos}"
 
 
-
-
-
 def xml_to_html(xml_file, html_file):
     # Registrar el namespace para XPath
     ns = {'circuito': 'http://www.uniovi.es'}
@@ -105,7 +102,7 @@ def xml_to_html(xml_file, html_file):
     html.open_tag('main')
     
     # Información básica
-    html.open_tag('section', {'id': 'info-basica'})
+    html.open_tag('section')
     html.open_tag('h2')
     html.add_text('Información Básica')
     html.close_tag('h2')
@@ -165,7 +162,7 @@ def xml_to_html(xml_file, html_file):
     # Bibliografía
     bibliografia = root.find('.//circuito:bibliografia', ns)
     if bibliografia is not None:
-        html.open_tag('section', {'id': 'bibliografia'})
+        html.open_tag('section')
         html.open_tag('h2')
         html.add_text('Bibliografía')
         html.close_tag('h2')
@@ -183,21 +180,21 @@ def xml_to_html(xml_file, html_file):
     # Fotografía
     fotografia = root.find('.//circuito:fotografia', ns)
     if fotografia is not None:
-        html.open_tag('section', {'id': 'fotografia'})
+        html.open_tag('section')
         html.open_tag('h2')
         html.add_text('Fotografía')
         html.close_tag('h2')
-        html.open_tag('div', {'class': 'galeria'})
+        html.open_tag('section')
         imagenes = fotografia.findall('.//circuito:imagen', ns)
         for img in imagenes:
             html.open_tag('img', {'src': img.get('src'), 'alt': img.get('nombre')}, self_closing=True)
-        html.close_tag('div')
+        html.close_tag('section')
         html.close_tag('section')
     
     # Multimedia
     multimedia = root.find('.//circuito:multimedia', ns)
     if multimedia is not None:
-        html.open_tag('section', {'id': 'multimedia'})
+        html.open_tag('section')
         html.open_tag('h2')
         html.add_text('Multimedia')
         html.close_tag('h2')
@@ -211,7 +208,7 @@ def xml_to_html(xml_file, html_file):
     # Vencedor
     vencedor = root.find('.//circuito:vencedor', ns)
     if vencedor is not None:
-        html.open_tag('section', {'id': 'vencedor'})
+        html.open_tag('section')
         html.open_tag('h2')
         html.add_text('Vencedor')
         html.close_tag('h2')
@@ -223,7 +220,7 @@ def xml_to_html(xml_file, html_file):
     # Clasificación
     clasificacion = root.find('.//circuito:clasificacion', ns)
     if clasificacion is not None:
-        html.open_tag('section', {'id': 'clasificacion'})
+        html.open_tag('section')
         html.open_tag('h2')
         html.add_text('Clasificación')
         html.close_tag('h2')

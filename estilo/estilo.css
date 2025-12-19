@@ -10,7 +10,6 @@ body{   font-family: Tahoma,Verdana,Segoe,sans-serif;
 /* Especificidad: (0,0,1) */
 header {
   background-color: #050505; 
-  color: #f0e6e4;
   padding: 1rem;
 }
 
@@ -30,7 +29,7 @@ nav {
 
 /* Especificidad: (0,0,2) */
 nav a {
-  color: #f0e6e4;
+  color: #a7a3a2;
   padding:0.12em ;
 }
 
@@ -72,11 +71,6 @@ header > h1 > a{
 }
 
 /** Especificidad (0,0,1)*/
-video{
-  width: 100%;
-  height:auto;
-}
-/** Especificidad (0,0,1)*/
 audio {
     height: 2.5rem;
     min-height: 2rem; 
@@ -96,53 +90,52 @@ main section svg {
   display: block;
 }
 
-/**Especificidad (1,0,1)*/
-article img {
-    width: 100%;
-    height: 40vh;  
-    object-fit: cover;
+/****/
+
+/* Especificidad: 002 */
+main form {
+    /* Quitamos el #f4f4f4 y ponemos un fondo oscuro semitransparente o transparente */
+    background-color: rgba(0, 0, 0, 0.2); 
+    padding: 1.5em;
+    border-radius: 0.5em;
+    /* Quitamos el borde gris sólido o lo hacemos más sutil */
+    border: 1px solid #444; 
+    color: #f0f0f0; /* Texto blanco para que se lea sobre oscuro */
 }
 
-/**Especificidad (0,0,1)*/
-fieldset {
-    margin-bottom: 2rem;
-    padding: 1rem;
-}
-
-/**Especificidad (0,1,0)*/
-.fila {
-    display: block;
-    margin-bottom: 1.5rem;
-}
-
-/**Especificidad (0,1,1)*/
-.fila label {
-    display: block;
+/* Para asegurar que las etiquetas dentro del form se lean */
+main form label {
+    color: #fff;
     font-weight: bold;
-    margin-bottom: 0.4rem;
 }
 
-/**Especificidad (0,1,1)*/
-.fila input,
-.fila select,
-.fila textarea {
+/* Especificidad: 011 */
+input[type="text"], 
+textarea,
+input[type="number"] { 
     width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    box-sizing: border-box;
+    background-color: #e0e0e0; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-
-/** Especificidad (0,0,1)*/
-button {
-    margin-top: 1rem;
-    padding: 0.6rem 1.2rem;
+/* Especificidad: 011 */
+button[type="submit"],
+button { 
+    background-color: #d32f2f;
+    color: #d7d7d7;
+    padding: 0.7em 1.5em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1em;
 }
 
-/**Especificidad (0,1,0)*/
-.hidden { display: none; }
-/**Especificidad (0,1,0)*/
-.bloqueado { pointer-events: none; opacity: 0.7; background-color: #f0f0f0; }
-/**Especificidad (0,1,0)*/
-.fila { margin-bottom: 15px; }
-/**Especificidad (0,1,0)*/
-label { display: inline-block; width: 300px; font-weight: bold; }
+/* Especificidad: 021 */
+button[type="submit"]:hover,
+button:hover {
+    background-color: #b71c1c;
+}

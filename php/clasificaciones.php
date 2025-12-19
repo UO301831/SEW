@@ -101,7 +101,7 @@ $clasificacion->consultar();
 
 <body>
     <header>
-        <h1><a href="index.html">MotoGP Desktop</a></h1>
+        <h1><a href="../index.html">MotoGP Desktop</a></h1>
         <nav>
             <a href="../index.html" title="Inicio de la aplicación MotoGP Desktop"> Inicio </a>
             <a href="../piloto.html" title="Información sobre el piloto"> Piloto </a>

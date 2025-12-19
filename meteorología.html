@@ -32,44 +32,36 @@
         </nav>
     </header>
 
-    <section id="migas">
+    <section>
         <p>Estás en: <a href="index.html">Inicio</a> >> <strong>Meteorología</strong></p>
     </section>
 
     <main>
         <h2>Información sobre la meteorología</h2>
 
-        <section id="infoCiudad">
+        <section>
             <h3>Información sobre la ciudad</h3>
-        </section>
-    </main>
+            </section>
+        
+        <section>
+            </section>
 
-    <section id="meteoCarrera"></section>
-    <section id="meteoEntrenos"></section>
+        <section>
+            </section>
+    </main>
 
     <script>
         const ciudadCarrera = new Ciudad("Spielberg", "Austria", "austriaco");
 
+        // Coordenadas aproximadas de Spielberg
         ciudadCarrera.initializeGeo(5400, "47°13′12″N, 14°45′54″E");
 
-        const contenedor = document.getElementById("infoCiudad");
-
-        const pCiudad = document.createElement("p");
-        pCiudad.innerHTML = `Ciudad: ${ciudadCarrera.cityToString()}`;
-        contenedor.appendChild(pCiudad);
-
-        const pPais = document.createElement("p");
-        pPais.innerHTML = `País: ${ciudadCarrera.countryToString()}`;
-        contenedor.appendChild(pPais);
-
-        const secInfo = document.createElement("section");
-        secInfo.innerHTML = ciudadCarrera.buildDemographicInfo();
-        contenedor.appendChild(secInfo);
-
+        // Escribimos la info básica en la primera sección del main
+        ciudadCarrera.writeCityInfo();
         ciudadCarrera.writeCoordinates();
 
+        // Llamadas a métodos para obtener la meteorología
         ciudadCarrera.getMeteorologiaCarrera("2025-08-17");
-
         ciudadCarrera.getMeteorologiaEntrenos(["2025-08-14", "2025-08-15", "2025-08-16"]);
     </script>
 </body>

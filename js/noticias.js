@@ -14,7 +14,7 @@ class Noticias {
             this.procesarInformacion(response);
         } catch (error) {
             console.error("Error al obtener noticias:", error);
-            $("#noticias").append("<p>Error al cargar noticias.</p>");
+            $("article > section").append("<p>Error al cargar noticias.</p>");
         }
     }
 
@@ -35,6 +35,6 @@ class Noticias {
             contenedor.append("<p>No se encontraron noticias sobre MotoGP.</p>");
         }
 
-        $("#noticias").append(contenedor);
+        $("article > section").append(contenedor);
     }
 }

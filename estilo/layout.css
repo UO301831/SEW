@@ -1,109 +1,93 @@
-/* Alejandro Requena Roncero UO301831   */
+/* Alejandro Requena Roncero UO301831 */
 
-/* Layout del proyecto MotoGP-Desktop*/
+/* Layout del proyecto MotoGP-Desktop */
 
-/* Header: contiene el título y la barra de navegación */
+/* Header: Flexbox para alinear título y menú */
 header {
-  display: flex;                 /* Activar Flexbox */
-  flex-wrap: wrap;                /* Permite que se adapte en pantallas pequeñas */
-  gap: 1rem;                      /* Separación entre h1 y nav */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center; /* Centrado vertical */
 }
-/**Especificidad: (0,0,1) */
 
 header h1 {
-  flex: 1 1 auto;   /* Puede crecer y encogerse, ocupa espacio flexible */
-  margin: 0;        /* Quitar márgenes innecesarios */
-}
-/**Especificidad: (0,0,2) */
-
-.galeria {
-  display: flex;
-  flex-wrap: wrap;              /* Permite que las imágenes se envuelvan en filas */
-  gap: 1rem;                    /* Espaciado entre imágenes */
-  justify-content: center;      /* Centrar las imágenes */
-}
-/**Especificidad: (0,1,0) */
-
-.galeria img {
-  flex: 1 1 auto;               /* Las imágenes crecen y se encogen según el espacio */
-  max-width: 100%;              /* No exceder el ancho del contenedor */
-  height: auto;                 /* Mantener proporción */
-}
-/**Especificidad: (0,1,1) */
-
-
-
-/** Version para moviles*/
-
-@media (min-width: 320px) and (max-width: 799px){
-  
-  
-  header h1{
-    flex-direction: column;   /* Apila h1 y nav en columna */
-    align-items: flex-start;  /* Alinear a la izquierda */
-  }
-/**Especificidad: (0,0,2) */
-
-  header nav{
-    flex-direction: column;   /* Enlaces uno debajo de otro */
-    width: 100%;              /* Ocupar ancho completo */
-    gap: 0.5rem;
-
-  }
-/**Especificidad: (0,0,2) */
-
-  nav a {
-    padding: 0.5rem;
-    text-align: center;
-  }
-/**Especificidad: (0,0,2) */
-
-  section{
-    display: none
-  }
-/**Especificidad: (1,0,0) */
-
-  .galeria {
-    flex-direction: column;    /* Apilar imágenes en columna */
-    align-items: center;       /* Centrar imágenes */
-  }
-/**Especificidad: (0,1,0) */
-
-  /* Regla para adaptabilidad del carrusel en móviles (tarea 9) */
-  article h2 + img {
-    width: 100%;               /* Ocupar todo el ancho de la pantalla */
-    height: auto;               /* Mantener proporción */
-  }
-/**Especificidad: (0,0,2) */
-
+    flex: 1 1 auto;
+    margin: 0;
 }
 
+/* Navegación */
 nav {
-  display: flex;
-  flex-wrap: wrap;              /* Si no caben los enlaces, se van a otra línea */
-  gap: 0.5rem 1rem;             /* Espaciado horizontal y vertical entre enlaces */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
 }
-/**Especificidad: (0,0,1) */
 
 nav a {
-  text-decoration: none;
-  padding: 0.2rem 1.6rem;
-  flex: 0 0 auto;   /* Los enlaces mantienen su tamaño natural */
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    flex: 0 0 auto;
+    display: inline-block; /* Mejora click en móviles */
 }
-/**Especificidad: (0,0,2) */
 
-/**Especificidad: (1,0,0) */
-svg { box-sizing: border-box; }
+/* --- REGLAS GENERALES PARA CONTENIDO --- */
 
-/**Especificidad: (1,0,0) */
-#mapSvgFallback {
-  width: 100%;
-  height: 30vh;
+/* Aseguramos que las imágenes y vídeos nunca se salgan de la pantalla */
+img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0.5rem 0;
 }
-/**Especificidad: (1,0,0) */
-#altimetria { margin-top: 1rem; }
 
+/* Galería de imágenes (Fotografía) */
+.galeria, section > section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+/* --- REGLA DEL MAPA --- */
+/* Solo el div del mapa debe tener altura fija */
+main > section:nth-of-type(9) > div {
+    width: 100%;
+    height: 500px;
+    border: 1px solid #ccc;
+    background-color: #eee; /* Fondo gris mientras carga */
+}
+
+/* --- ADAPTABILIDAD (MÓVILES) --- */
 @media (max-width: 799px) {
-  /**Especificidad: (1,0,0) */
-  #map, #mapSvgFallback { height: 30vh; }
+    
+    /* Header en columna */
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* Navegación en columna y botones más grandes */
+    nav {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+    }
+
+    nav a {
+        width: 100%;
+        text-align: center;
+        background-color: #444; /* Fondo oscuro para diferenciar botones */
+        border-radius: 5px;
+        box-sizing: border-box; /* Para que el padding no rompa el ancho */
+    }
+
+    /* Mapa más pequeño en móviles */
+    main > section:nth-of-type(9) > div {
+        height: 300px;
+    }
+
+    /* Ajuste de imágenes para que no ocupen demasiado */
+    .galeria img, section > section img {
+        width: 100%;
+    }
 }

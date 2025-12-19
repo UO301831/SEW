@@ -1,213 +1,229 @@
+/* Alejandro Requena Roncero UO301831 */
+
+// Variable global para el mapa
+var mapaDinamico;
+
 class Circuito {
-  constructor() {
-    this.input = document.querySelector('#inputInfoHTML');
-    this.targetIds = ['#info-basica','#bibliografia','#fotografia','#multimedia','#vencedor','#clasificacion'];
-    if (!this.comprobarApiFile()) {
-      alert('El navegador no soporta File API');
-      return;
+    constructor() {
+        // Selector específico sin usar IDs
+        this.inputHTML = document.querySelector('main > section:nth-of-type(1) input[accept=".html"]');
+
+        // Tarea 2: Comprobación de soporte
+        if (!this.comprobarApiFile()) {
+            this.mostrarErrorSoporte();
+            return;
+        }
+
+        // Listener
+        if (this.inputHTML) {
+            this.inputHTML.addEventListener('change', (e) => this.leerArchivoHTML(e));
+        }
     }
-    if (this.input) {
-      this.input.addEventListener('change', (e) => this.leerArchivoHTML(e));
+
+    comprobarApiFile() {
+        return !!(window.File && window.FileReader && window.FileList && window.Blob);
     }
-  }
 
-  /** Devuelve true si el navegador soporta File API */
-  comprobarApiFile() {
-    return !!(window.File && window.FileReader && window.FileList && window.Blob);
-  }
+    mostrarErrorSoporte() {
+        const mensaje = document.createElement("p");
+        mensaje.textContent = "Tu navegador no soporta la API File.";
+        const contenedor = document.querySelector('main > section:nth-of-type(1)');
+        if (contenedor) contenedor.appendChild(mensaje);
+    }
 
-  /** Lee el archivo HTML seleccionado y llama al parseador */
-  leerArchivoHTML(evt) {
-    const file = evt.target.files && evt.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const texto = reader.result;
-      this._procesarHTML(texto);
-    };
-    reader.readAsText(file, 'utf-8');
-  }
+    leerArchivoHTML(evt) {
+        const archivo = evt.target.files[0];
+        if (!archivo) return;
 
-  /** Inserta en las secciones del documento el contenido correspondiente */
-  _procesarHTML(htmlText) {
-    try {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(htmlText, 'text/html');
-      this.targetIds.forEach((id) => {
-        const origen = doc.querySelector(id);
-        const destino = document.querySelector(id);
-        if (origen && destino) destino.innerHTML = origen.innerHTML;
-      });
-    } catch (e) {}
-  }
+        const lector = new FileReader();
+        lector.onload = (e) => {
+            this._procesarHTML(e.target.result);
+        };
+        lector.readAsText(archivo);
+    }
 
+    _procesarHTML(textoHTML) {
+        try {
+            const parser = new DOMParser();
+            const docXML = parser.parseFromString(textoHTML, "text/html");
+
+            // Seleccionamos las secciones de TU página (destino)
+            const seccionesPagina = document.querySelectorAll('main > section');
+
+            // --- CORRECCIÓN CLAVE ---
+            // Tu archivo generado por Python tiene la info dentro de <section> tags.
+            // Buscamos directamente todos los 'section' del archivo subido.
+            // Esto evita coger el <header> (banner negro) o el <main> completo.
+            const seccionesSubidas = docXML.querySelectorAll('section');
+
+            seccionesSubidas.forEach(seccionSubida => {
+                // Buscamos el título H2 dentro de la sección subida
+                const tituloSubido = seccionSubida.querySelector('h2');
+                
+                if (tituloSubido) {
+                    const textoTitulo = tituloSubido.textContent.trim();
+
+                    // Buscamos la coincidencia en la página destino
+                    // Empezamos en i=1 para saltar la sección "Archivos del circuito"
+                    for (let i = 1; i < seccionesPagina.length; i++) {
+                        const seccionPagina = seccionesPagina[i];
+                        const tituloPagina = seccionPagina.querySelector('h2');
+
+                        if (tituloPagina && tituloPagina.textContent.trim() === textoTitulo) {
+                            // ¡COINCIDENCIA!
+                            // Reemplazamos el contenido.
+                            // Como el origen ya trae el <h2> correcto, podemos sustituir todo el innerHTML.
+                            seccionPagina.innerHTML = seccionSubida.innerHTML;
+                            break; // Pasamos a la siguiente sección subida
+                        }
+                    }
+                }
+            });
+
+        } catch (error) {
+            console.error("Error al procesar el archivo HTML:", error);
+        }
+    }
 }
 
 class CargadorSVG {
-  /** Configura el input para leer archivos SVG y el contenedor donde insertarlo */
-  constructor() {
-    this.input = document.querySelector('#inputSVG');
-    this.container = document.querySelector('#altimetria');
-    if (this.input) {
-      this.input.addEventListener('change', (e) => this.leerArchivoSVG(e));
+    constructor() {
+        this.input = document.querySelector('main > section:nth-of-type(1) input[accept=".svg"]');
+        this.container = document.querySelector('main > section:nth-of-type(8)');
+
+        if (this.input) {
+            this.input.addEventListener('change', (e) => this.leerArchivoSVG(e));
+        }
     }
-  }
 
-  /** Lee el archivo SVG seleccionado y lo pasa a insertar */
-  leerArchivoSVG(evt) {
-    const file = evt.target.files && evt.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const texto = reader.result;
-      this.insertarSVG(texto);
-    };
-    reader.readAsText(file, 'utf-8');
-  }
+    leerArchivoSVG(evt) {
+        const file = evt.target.files[0];
+        if (!file) return;
 
-  /** Inserta el texto SVG dentro del contenedor (innerHTML) */
-  insertarSVG(svgText) {
-    if (!this.container) return;
-    this.container.innerHTML = svgText;
-  }
+        const reader = new FileReader();
+        reader.onload = () => {
+            this.insertarSVG(reader.result);
+        };
+        reader.readAsText(file);
+    }
+
+    insertarSVG(svgText) {
+        if (!this.container) return;
+        
+        // Mantenemos el título H2 original
+        const titulo = this.container.querySelector('h2');
+        this.container.innerHTML = ""; 
+        if(titulo) this.container.appendChild(titulo);
+        
+        // Añadimos el SVG después
+        this.container.innerHTML += svgText;
+        
+        const svgElement = this.container.querySelector('svg');
+        if (svgElement) {
+            svgElement.setAttribute('width', '100%');
+            svgElement.setAttribute('height', 'auto');
+        }
+    }
 }
 
 class CargadorKML {
-  /** Configura el input para leer KML y el svg fallback donde dibujar */
-  constructor() {
-    this.input = document.querySelector('#inputKML');
-    this.svg = document.querySelector('#mapSvgFallback');
-    if (this.input) {
-      this.input.addEventListener('change', (e) => this.leerArchivoKML(e));
+    constructor() {
+        this.input = document.querySelector('main > section:nth-of-type(1) input[accept=".kml,.xml"]');
+        
+        if (this.input) {
+            this.input.addEventListener('change', (e) => this.leerArchivoKML(e));
+        }
     }
-  }
 
-  /** Lee el archivo KML seleccionado y llama al procesador */
-  leerArchivoKML(evt) {
-    const file = evt.target.files && evt.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const texto = reader.result;
-      this.procesarKML(texto);
-    };
-    reader.readAsText(file, 'utf-8');
-  }
+    leerArchivoKML(evt) {
+        const file = evt.target.files[0];
+        if (!file) return;
 
-  /** Extrae coordenadas del KML y dibuja una polyline en el SVG */
-  procesarKML(kmlText) {
-    try {
-      const parser = new DOMParser();
-      const xml = parser.parseFromString(kmlText, 'application/xml');
-      const coordsNodes = xml.querySelectorAll('coordinates');
-      const points = [];
-      coordsNodes.forEach(node => {
-        const raw = node.textContent.trim();
-        const items = raw.split(/\s+/);
-        items.forEach(it => {
-          const parts = it.split(',');
-          if (parts.length >= 2) {
-            const lon = parseFloat(parts[0]);
-            const lat = parseFloat(parts[1]);
-            if (!isNaN(lon) && !isNaN(lat)) points.push([lat, lon]);
-          }
+        const reader = new FileReader();
+        reader.onload = () => {
+            this.procesarKML(reader.result);
+        };
+        reader.readAsText(file);
+    }
+
+    procesarKML(kmlText) {
+        try {
+            const parser = new DOMParser();
+            const xml = parser.parseFromString(kmlText, 'application/xml');
+            const coordsNodes = xml.querySelectorAll('coordinates');
+            const points = [];
+
+            coordsNodes.forEach(node => {
+                const raw = node.textContent.trim();
+                const items = raw.split(/\s+/);
+                items.forEach(it => {
+                    const parts = it.split(',');
+                    if (parts.length >= 2) {
+                        const lon = parseFloat(parts[0]);
+                        const lat = parseFloat(parts[1]);
+                        if (!isNaN(lon) && !isNaN(lat)) {
+                            points.push({ lat: lat, lng: lon });
+                        }
+                    }
+                });
+            });
+
+            if (points.length > 0) {
+                this.insertarEnGoogleMaps(points);
+            }
+        } catch (e) {
+            console.error("Error procesando KML", e);
+        }
+    }
+
+    insertarEnGoogleMaps(puntos) {
+        if (!mapaDinamico) {
+            // Este mensaje saldrá si la API Key falla o no ha cargado
+            console.error("El mapa no está disponible (Revisa la API Key).");
+            return;
+        }
+
+        const circuitoLine = new google.maps.Polyline({
+            path: puntos,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 4
         });
-      });
-    if (points.length) {
-        this.dibujarEnSVG(points);  // fallback obligatorio
-        this.insertarEnGoogleMaps(points); // para Google Maps
+
+        circuitoLine.setMap(mapaDinamico);
+
+        const bounds = new google.maps.LatLngBounds();
+        puntos.forEach(p => bounds.extend(p));
+        mapaDinamico.fitBounds(bounds);
+
+        new google.maps.Marker({
+            position: puntos[0],
+            map: mapaDinamico,
+            title: "Inicio Circuito"
+        });
     }
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
-  /** Dibuja una línea y marcador de origen sencilla dentro del svg de fallback */
-  dibujarEnSVG(points) {
-    if (!this.svg) return;
-    while (this.svg.firstChild) this.svg.removeChild(this.svg.firstChild);
-
-    const w = this.svg.clientWidth || 600;
-    const h = this.svg.clientHeight || 400;
-    this.svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
-    const lats = points.map(p => p[0]);
-    const lons = points.map(p => p[1]);
-    const minLat = Math.min(...lats), maxLat = Math.max(...lats);
-    const minLon = Math.min(...lons), maxLon = Math.max(...lons);
-    const pad = 20;
-    const sx = (w - pad*2) / ((maxLon - minLon) || 1);
-    const sy = (h - pad*2) / ((maxLat - minLat) || 1);
-
-    const toXY = (p) => {
-      const x = pad + (p[1] - minLon) * sx;
-      const y = h - (pad + (p[0] - minLat) * sy);
-      return [x, y];
-    };
-
-    const pointsAttr = points.map(p => toXY(p).join(',')).join(' ');
-    const poly = document.createElementNS('http://www.w3.org/2000/svg','polyline');
-    poly.setAttribute('points', pointsAttr);
-    poly.setAttribute('fill', 'none');
-    poly.setAttribute('stroke', '#d00');
-    poly.setAttribute('stroke-width', '3');
-    this.svg.appendChild(poly);
-
-    const originXY = toXY(points[0]);
-    const circ = document.createElementNS('http://www.w3.org/2000/svg','circle');
-    circ.setAttribute('cx', originXY[0]);
-    circ.setAttribute('cy', originXY[1]);
-    circ.setAttribute('r', 6);
-    circ.setAttribute('fill', '#0055aa');
-    this.svg.appendChild(circ);
-  }
-
-  insertarEnGoogleMaps(points) {
-  if (!map) return;
-
-  const path = points.map(p => ({ lat: p[0], lng: p[1] }));
-
-  const polyline = new google.maps.Polyline({
-    path: path,
-    strokeColor: "#FF0000",
-    strokeOpacity: 1.0,
-    strokeWeight: 3,
-    map: map
-  });
-
-  new google.maps.Marker({
-    position: path[0],
-    map: map,
-    title: "Inicio del circuito"
-  });
-
-  // Ajustar mapa al circuito
-  const bounds = new google.maps.LatLngBounds();
-  path.forEach(pt => bounds.extend(pt));
-  map.fitBounds(bounds);
 }
 
-}
-
-// ------------------------------
-// GOOGLE MAPS: creación del mapa
-// ------------------------------
-let map;
-
+// Callback global de Google Maps
 function iniciarMapa() {
-  const centroInicial = { lat: 47.21995421616413, lng:  14.76488816433875};
+    // Buscamos el div dentro de la sección 9 (Mapa del circuito)
+    const contenedorMapa = document.querySelector("main > section:nth-of-type(9) > div");
 
-  map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 14,
-    center: centroInicial,
-    mapTypeId: "terrain"
-  });
-
-  console.log("Mapa cargado correctamente");
+    if (contenedorMapa) {
+        const centro = { lat: 40.416, lng: -3.703 }; 
+        
+        mapaDinamico = new google.maps.Map(contenedorMapa, {
+            zoom: 8,
+            center: centro,
+            mapTypeId: 'terrain'
+        });
+        console.log("Mapa cargado correctamente.");
+    }
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
-  new Circuito();
-  new CargadorSVG();
-  new CargadorKML();
+    new Circuito();
+    new CargadorSVG();
+    new CargadorKML();
 });

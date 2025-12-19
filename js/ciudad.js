@@ -1,9 +1,9 @@
 class Ciudad {
-    #ciudad
-    #pais
-    #gentilicio
-    #puntoCentral
-    #cantidadPoblacion
+    #ciudad;
+    #pais;
+    #gentilicio;
+    #puntoCentral;
+    #cantidadPoblacion;
 
     constructor(ciudad, pais, gentilicio) {
         this.#ciudad = ciudad;
@@ -18,9 +18,8 @@ class Ciudad {
         this.#puntoCentral = this.#parseCoordinates(puntoCentral);
     }
 
-    // Método auxiliar para convertir coordenadas DMS a decimal
     #parseCoordinates(coordString) {
-        const parts = coordString.split(', ');
+        const parts = coordString.split(',');
         const latDMS = parts[0].trim();  
         const lonDMS = parts[1].trim(); 
         const lat = this.#dmsToDecimal(latDMS);
@@ -58,13 +57,35 @@ class Ciudad {
         `;
     }
 
-    writeCoordinates() {
-        const p = document.createElement("p");
-        p.innerHTML = `Coordenadas del punto central: ${this.#puntoCentral.lat}, ${this.#puntoCentral.lon}`;
-        document.getElementById("infoCiudad").appendChild(p);
+    // Escribe info básica de la ciudad en la 1ª sección
+    writeCityInfo() {
+        const contenedor = document.querySelector("main > section:nth-of-type(1)");
+        if (!contenedor) return;
+
+        const pCiudad = document.createElement("p");
+        pCiudad.innerHTML = `Ciudad: ${this.cityToString()}`;
+        contenedor.appendChild(pCiudad);
+
+        const pPais = document.createElement("p");
+        pPais.innerHTML = `País: ${this.countryToString()}`;
+        contenedor.appendChild(pPais);
+
+        const divInfo = document.createElement("div");
+        divInfo.innerHTML = this.buildDemographicInfo();
+        contenedor.appendChild(divInfo);
     }
 
-    // Obtener datos meteorológicos del día de la carrera
+    // Escribe coordenadas en la 1ª sección
+    writeCoordinates() {
+        const contenedor = document.querySelector("main > section:nth-of-type(1)");
+        if (!contenedor) return;
+
+        const p = document.createElement("p");
+        p.innerHTML = `Coordenadas del punto central: ${this.#puntoCentral.lat.toFixed(4)}, ${this.#puntoCentral.lon.toFixed(4)}`;
+        contenedor.appendChild(p);
+    }
+
+    // Tarea 3: Obtener datos meteorológicos del día de la carrera
     getMeteorologiaCarrera(fecha) {
         let url = "https://archive-api.open-meteo.com/v1/archive?latitude=" + this.#puntoCentral.lat
                 + "&longitude=" + this.#puntoCentral.lon
@@ -86,24 +107,35 @@ class Ciudad {
         });
     }
 
-    // Procesar JSON de la carrera
+    // Tarea 4 y 5: Procesar JSON de la carrera y mostrar en HTML (2ª sección)
     procesarJSONCarrera(json) {
-        let contenedor = $("<section></section>");
-        contenedor.append("<h3>Meteorología Carrera</h3>");
+        // Seleccionamos la 2ª sección del main para la carrera
+        // Usamos jQuery para seleccionar "main > section:eq(1)" (índice 1 es el segundo hijo)
+        // Ojo: nth-of-type en CSS es base 1. En jQuery :eq es base 0.
+        // main > section:nth-of-type(2)
+        
+        let contenedor = $("main > section:nth-of-type(2)");
+        
+        let articulo = $("<article></article>");
+        articulo.append("<h3>Meteorología Día de Carrera</h3>");
 
-        contenedor.append("<p>Salida del sol: " + this.#formatearHora(json.daily.sunrise[0]) + "</p>");
-        contenedor.append("<p>Puesta del sol: " + this.#formatearHora(json.daily.sunset[0]) + "</p>");
+        // Datos diarios
+        articulo.append("<p>Salida del sol: " + this.#formatearHora(json.daily.sunrise[0]) + "</p>");
+        articulo.append("<p>Puesta del sol: " + this.#formatearHora(json.daily.sunset[0]) + "</p>");
 
-        contenedor.append("<p>Temperatura (2m): " + json.hourly.temperature_2m[14] + " °C</p>");
-        contenedor.append("<p>Sensación térmica: " + json.hourly.apparent_temperature[14] + " °C</p>");
-        contenedor.append("<p>Lluvia: " + json.hourly.precipitation[14] + " mm</p>");
-        contenedor.append("<p>Humedad relativa: " + json.hourly.relative_humidity_2m[14] + " %</p>");
-        contenedor.append("<p>Viento: " + json.hourly.windspeed_10m[14] + " km/h dirección " + json.hourly.winddirection_10m[14] + "°</p>");
+        // Datos horarios (14:00 como referencia)
+        const horaIndex = 14; 
+        articulo.append("<p>Hora de referencia: 14:00</p>");
+        articulo.append("<p>Temperatura (2m): " + json.hourly.temperature_2m[horaIndex] + " " + json.hourly_units.temperature_2m + "</p>");
+        articulo.append("<p>Sensación térmica: " + json.hourly.apparent_temperature[horaIndex] + " " + json.hourly_units.apparent_temperature + "</p>");
+        articulo.append("<p>Lluvia: " + json.hourly.precipitation[horaIndex] + " " + json.hourly_units.precipitation + "</p>");
+        articulo.append("<p>Humedad relativa: " + json.hourly.relative_humidity_2m[horaIndex] + " " + json.hourly_units.relative_humidity_2m + "</p>");
+        articulo.append("<p>Viento: " + json.hourly.windspeed_10m[horaIndex] + " " + json.hourly_units.windspeed_10m + " dirección " + json.hourly.winddirection_10m[horaIndex] + json.hourly_units.winddirection_10m + "</p>");
 
-        $("#meteoCarrera").append(contenedor);
+        contenedor.append(articulo);
     }
 
-    // Obtener datos meteorológicos de los días de entrenamientos
+    // Tarea 6: Obtener datos meteorológicos de entrenamientos
     getMeteorologiaEntrenos(fechas) {
         let start = fechas[0];
         let end = fechas[fechas.length - 1];
@@ -127,25 +159,38 @@ class Ciudad {
         });
     }
 
+    // Tarea 7 y 8: Procesar JSON de entrenamientos (medias) y mostrar en HTML (3ª sección)
     procesarJSONEntrenos(json, fechas) {
-        let contenedor = $("<section></section>");
-        contenedor.append("<h3>Meteorología Entrenamientos</h3>");
+        // Seleccionamos la 3ª sección del main
+        let contenedor = $("main > section:nth-of-type(3)");
+        
+        let articulo = $("<article></article>");
+        articulo.append("<h3>Meteorología Entrenamientos</h3>");
 
-        // Calcular medias por día
         fechas.forEach((fecha) => {
+            // Filtrar índices correspondientes a la fecha actual
             let indices = json.hourly.time.map((t, i) => t.startsWith(fecha) ? i : -1).filter(i => i >= 0);
 
-            let temp = indices.map(i => json.hourly.temperature_2m[i]);
-            let lluvia = indices.map(i => json.hourly.precipitation[i]);
-            let viento = indices.map(i => json.hourly.windspeed_10m[i]);
-            let humedad = indices.map(i => json.hourly.relative_humidity_2m[i]);
+            if (indices.length > 0) {
+                let temp = indices.map(i => json.hourly.temperature_2m[i]);
+                let lluvia = indices.map(i => json.hourly.precipitation[i]);
+                let viento = indices.map(i => json.hourly.windspeed_10m[i]);
+                let humedad = indices.map(i => json.hourly.relative_humidity_2m[i]);
 
-            function media(arr) { return (arr.reduce((a, b) => a + b, 0) / arr.length).toFixed(2); }
+                const media = (arr) => (arr.reduce((a, b) => a + b, 0) / arr.length).toFixed(2);
 
-            contenedor.append("<p>Día " + fecha + ": Temp media " + media(temp) + " °C, Lluvia media " + media(lluvia) + " mm, Viento medio " + media(viento) + " km/h, Humedad media " + media(humedad) + " %</p>");
+                let infoDia = $("<p></p>");
+                infoDia.html(`<strong>Día ${fecha}:</strong> <br>
+                    Temp media: ${media(temp)} ${json.hourly_units.temperature_2m}, 
+                    Lluvia media: ${media(lluvia)} ${json.hourly_units.precipitation}, 
+                    Viento medio: ${media(viento)} ${json.hourly_units.windspeed_10m}, 
+                    Humedad media: ${media(humedad)} ${json.hourly_units.relative_humidity_2m}`);
+                
+                articulo.append(infoDia);
+            }
         });
 
-        $("#meteoEntrenos").append(contenedor);
+        contenedor.append(articulo);
     }
 
     #formatearHora(fechaISO) {

@@ -10,8 +10,8 @@ class Carrusel {
         var flickrAPI = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
 
         $.getJSON(flickrAPI, {
-            tags: this.busqueda,
-            tagmode: "any",
+            tags: "MotoGP,Spielberg,"+this.busqueda,
+            tagmode: "all",
             format: "json"
         })
         .done((data) => {
@@ -38,13 +38,16 @@ class Carrusel {
     }
 
     mostrarFotografias() {
-        $("#imagenCarrusel").attr("src", this.fotos[this.actual]);
+        $("article > img").attr("src", this.fotos[this.actual]);
+
+        $("article > img").eq(0).attr("alt", "Imagen carrusel: " + this.busqueda);
+
         setInterval(this.cambiarFotografia.bind(this), 3000);
     }
 
     cambiarFotografia() {
         if (this.fotos.length === 0) return;
         this.actual = (this.actual + 1) % this.fotos.length;
-        $("#imagenCarrusel").attr("src", this.fotos[this.actual]);
+        $("article > img").attr("src", this.fotos[this.actual]);
     }
 }
