@@ -112,9 +112,9 @@ $clasificacion->consultar();
             <a href="../ayuda.html" title="Ayuda sobre la aplicación de MotoGP"> Ayuda </a>
         </nav>
     </header>
-    
-<section> <p>Estás en: <a href="../index.html">Inicio</a> >> <strong> Clasificaciones </strong></p> </section>
+    <nav> <p>Estás en: <a href="../index.html">Inicio</a> >> <strong> Clasificaciones </strong></p> </nav>
     <h2>Clasificaciones MotoGP</h2>
+
     <?php
         $clasificacion->obtenerGanador();
 

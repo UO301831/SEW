@@ -36,13 +36,6 @@ nav a {
 /**Especificidad (0,1,1)*/
 a:hover{
   color:orange;
-  font-size: 1.05rem;
-}
-
-/** Especificidad (1,0,2)*/
-section p a{
-  text-decoration: none;
-  color: #f0e6e4;
 }
 
 /** Especificidad (0, 1, 1)*/
@@ -56,7 +49,6 @@ a.active{
 section {
   font-size: 1.1rem;
 }
-
 
 /** Especificidad (1,0,2)*/
 section >  p > strong{
@@ -75,12 +67,7 @@ audio {
     height: 2.5rem;
     min-height: 2rem; 
 }
-/**Especificidad (1,0,0)*/
-main section section {
-  width: 100%;
-  height: 50vh;
-  box-sizing: border-box;
-}
+
 
 /**Especificidad (1,0,0)*/
 main section svg {
@@ -139,3 +126,4 @@ button[type="submit"]:hover,
 button:hover {
     background-color: #b71c1c;
 }
+

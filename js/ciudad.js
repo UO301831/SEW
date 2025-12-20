@@ -70,9 +70,9 @@ class Ciudad {
         pPais.innerHTML = `País: ${this.countryToString()}`;
         contenedor.appendChild(pPais);
 
-        const divInfo = document.createElement("div");
-        divInfo.innerHTML = this.buildDemographicInfo();
-        contenedor.appendChild(divInfo);
+        const sectionInfo = document.createElement("section");
+        sectionInfo.innerHTML = this.buildDemographicInfo();
+        contenedor.appendChild(sectionInfo);
     }
 
     // Escribe coordenadas en la 1ª sección
@@ -107,23 +107,18 @@ class Ciudad {
         });
     }
 
-    // Tarea 4 y 5: Procesar JSON de la carrera y mostrar en HTML (2ª sección)
+    // Procesar JSON de la carrera y mostrar en HTML
     procesarJSONCarrera(json) {
-        // Seleccionamos la 2ª sección del main para la carrera
-        // Usamos jQuery para seleccionar "main > section:eq(1)" (índice 1 es el segundo hijo)
-        // Ojo: nth-of-type en CSS es base 1. En jQuery :eq es base 0.
-        // main > section:nth-of-type(2)
         
         let contenedor = $("main > section:nth-of-type(2)");
         
         let articulo = $("<article></article>");
-        articulo.append("<h3>Meteorología Día de Carrera</h3>");
-
+        articulo.append('<strong>Día 2025-08-17:</strong>');
         // Datos diarios
         articulo.append("<p>Salida del sol: " + this.#formatearHora(json.daily.sunrise[0]) + "</p>");
         articulo.append("<p>Puesta del sol: " + this.#formatearHora(json.daily.sunset[0]) + "</p>");
 
-        // Datos horarios (14:00 como referencia)
+        // Datos horarios
         const horaIndex = 14; 
         articulo.append("<p>Hora de referencia: 14:00</p>");
         articulo.append("<p>Temperatura (2m): " + json.hourly.temperature_2m[horaIndex] + " " + json.hourly_units.temperature_2m + "</p>");
@@ -135,7 +130,7 @@ class Ciudad {
         contenedor.append(articulo);
     }
 
-    // Tarea 6: Obtener datos meteorológicos de entrenamientos
+    //Obtener datos meteorológicos de entrenamientos
     getMeteorologiaEntrenos(fechas) {
         let start = fechas[0];
         let end = fechas[fechas.length - 1];
@@ -159,16 +154,13 @@ class Ciudad {
         });
     }
 
-    // Tarea 7 y 8: Procesar JSON de entrenamientos (medias) y mostrar en HTML (3ª sección)
+    // Procesar JSON de entrenamientos (medias) y mostrar en HTML
     procesarJSONEntrenos(json, fechas) {
-        // Seleccionamos la 3ª sección del main
         let contenedor = $("main > section:nth-of-type(3)");
         
         let articulo = $("<article></article>");
-        articulo.append("<h3>Meteorología Entrenamientos</h3>");
 
         fechas.forEach((fecha) => {
-            // Filtrar índices correspondientes a la fecha actual
             let indices = json.hourly.time.map((t, i) => t.startsWith(fecha) ? i : -1).filter(i => i >= 0);
 
             if (indices.length > 0) {
@@ -180,7 +172,7 @@ class Ciudad {
                 const media = (arr) => (arr.reduce((a, b) => a + b, 0) / arr.length).toFixed(2);
 
                 let infoDia = $("<p></p>");
-                infoDia.html(`<strong>Día ${fecha}:</strong> <br>
+                infoDia.html(`<strong>Día ${fecha}:</strong>
                     Temp media: ${media(temp)} ${json.hourly_units.temperature_2m}, 
                     Lluvia media: ${media(lluvia)} ${json.hourly_units.precipitation}, 
                     Viento medio: ${media(viento)} ${json.hourly_units.windspeed_10m}, 

@@ -43,9 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <header>
             <h1><a href="../index.html">MotoGP Desktop</a></h1>
             </header>
-        <section>
+        <nav>
             <p>Estás en: <a href="../index.html">Inicio</a> >> <a href="../juegos.html">Juegos</a> >> <strong>Cronómetro en PHP</strong></p>
-        </section>
+        </nav>
         <main>
              <h2>Cronómetro</h2>
              <form method="POST" action="cronometro.php">

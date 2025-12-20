@@ -65,7 +65,6 @@ class TestUsabilidad {
     // --- LÓGICA DE BASE DE DATOS ---
 
     private function procesarInicioTest() {
-        // NOTA: Ya no recogemos $_POST['dni'] porque es automático
         $edad = intval($_POST['edad']);
         $nombreGenero = $_POST['genero'];
         $nombreProfesion = $_POST['profesion'];
@@ -109,7 +108,7 @@ class TestUsabilidad {
 
         // 4. Iniciar Sesión y Crono
         $this->crono->arrancar();
-        $_SESSION['id_usuario_actual'] = $nuevoIdUsuario; // Guardamos el ID generado
+        $_SESSION['id_usuario_actual'] = $nuevoIdUsuario;
         $_SESSION['nombre_dispositivo_actual'] = $nombreDispositivo;
         $_SESSION['crono_inicio'] = $this->crono->getInicio();
 
